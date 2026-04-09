@@ -10,3 +10,6 @@ coverage/
 .vscode/
 .idea/
 Thumbs.db
+
+# Raw source assets (optimized copies are written into public/eh_public_assets/)
+eh_public_assets/

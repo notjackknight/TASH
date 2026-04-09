@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Image02Icon,
@@ -101,27 +101,38 @@ function ImageTile({
   alt,
   span,
   onClick,
+  eager = false,
 }: {
   src: string;
   alt: string;
   span: string;
   onClick: () => void;
+  /** When true, the image loads immediately and skips the scroll-reveal animation.
+   *  Use for tiles that are visible in the initial viewport (above the fold). */
+  eager?: boolean;
 }) {
+  const motionProps = eager
+    ? {}
+    : {
+        initial: { opacity: 0, scale: 0.96 },
+        whileInView: { opacity: 1, scale: 1 },
+        viewport: { once: true, margin: '-60px' },
+        transition: { type: 'spring' as const, stiffness: 90, damping: 22 },
+      };
+
   return (
     <motion.button
       type="button"
       onClick={onClick}
-      initial={{ opacity: 0, scale: 0.96 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ type: 'spring', stiffness: 90, damping: 22 }}
+      {...motionProps}
       className={`group relative overflow-hidden border border-micro/20 no-radius cursor-zoom-in bg-canvas ${span}`}
       aria-label={`View ${alt}`}
     >
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : undefined}
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.8s] ease-out group-hover:scale-[1.06]"
       />
@@ -307,6 +318,20 @@ function Lightbox({
 export function Gallery() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Toggle the expanded gallery. When collapsing, snap the section back into
+  // view — otherwise the page height shrinks under the user and they get
+  // dumped near the footer.
+  const toggleExpanded = () => {
+    setExpanded((v) => {
+      const next = !v;
+      if (!next) {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return next;
+    });
+  };
 
   // Helper that takes a tile and returns the index of that image in galleryImages
   const openTile = (tile: Tile) => {
@@ -322,15 +347,26 @@ export function Gallery() {
     setOpenIndex((i) => (i === null ? null : (i + 1) % galleryImages.length));
 
   return (
-    <section id="gallery" className="py-20 md:py-20 bg-white border-t border-micro/20 scroll-mt-24">
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
+    <section ref={sectionRef} id="gallery" className="relative py-10 md:py-20 lg:py-12 bg-white border-t border-micro/20 scroll-mt-24 overflow-hidden">
+      {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
+      <div
+        className="absolute inset-0 pointer-events-none bg-scroll md:bg-fixed"
+        style={{
+          backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
+          backgroundRepeat: 'repeat',
+          backgroundSize: '500px auto',
+        }}
+      />
+      {/* Heavy white wash */}
+      <div className="absolute inset-0 pointer-events-none bg-white/88" />
+      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-          className="mb-12 md:mb-16 text-center max-w-3xl mx-auto"
+          className="mb-6 md:mb-16 text-center max-w-3xl mx-auto"
         >
           <div className="inline-flex items-center gap-3 mb-4 text-action">
             <SparklesIcon size={18} strokeWidth={1.5} />
@@ -357,16 +393,13 @@ export function Gallery() {
                     alt={tile.alt}
                     span={tile.span}
                     onClick={() => openTile(tile)}
+                    eager={i < 4}
                   />
                 ) : (
                   <PlaceholderTile key={i} label={tile.label} span={tile.span} />
                 )
               )}
             </div>
-            {/* Bottom fade when collapsed */}
-            {!expanded && (
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent" />
-            )}
           </div>
 
           {/* Expand / collapse toggle */}
@@ -374,7 +407,7 @@ export function Gallery() {
             <motion.button
               type="button"
               whileTap={{ scale: 0.96 }}
-              onClick={() => setExpanded((v) => !v)}
+              onClick={toggleExpanded}
               className="group inline-flex items-center gap-3 border border-anchor/30 bg-white text-anchor px-8 py-3 no-radius uppercase tracking-[0.22em] text-[11px] font-semibold hover:bg-anchor hover:text-white transition-colors duration-300"
             >
               <span>{expanded ? 'Show less' : 'View full gallery'}</span>
@@ -395,8 +428,8 @@ export function Gallery() {
       </div>
 
       {/* MOBILE — horizontal scrolling mosaic */}
-      <div className="md:hidden">
-        <div className="px-6 mb-5 flex items-center gap-3 text-anchor/60">
+      <div className="relative md:hidden">
+        <div className="px-6 mb-3 md:mb-5 flex items-center gap-3 text-anchor/60">
           <span className="uppercase tracking-[0.2em] text-[10px] font-semibold">
             Swipe to explore
           </span>
@@ -418,6 +451,7 @@ export function Gallery() {
                   alt={tile.alt}
                   span={tile.mobileSpan}
                   onClick={() => openTile(tile)}
+                  eager={i < 4}
                 />
               ) : (
                 <PlaceholderTile

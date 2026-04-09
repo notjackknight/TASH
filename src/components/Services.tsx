@@ -388,11 +388,22 @@ export function Services() {
   };
 
   return (
-    <section ref={sectionRef} id="services" className="py-16 md:py-20 bg-white pattern-sprig relative overflow-hidden scroll-mt-24">
+    <section ref={sectionRef} id="services" className="py-16 md:py-20 bg-white relative overflow-hidden scroll-mt-24">
+      {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
+      <div
+        className="absolute inset-0 pointer-events-none bg-scroll md:bg-fixed"
+        style={{
+          backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
+          backgroundRepeat: 'repeat',
+          backgroundSize: '500px auto',
+        }}
+      />
+      {/* Heavy white wash */}
+      <div className="absolute inset-0 pointer-events-none bg-white/88" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-anchor/25 to-transparent"></div>
 
       {/* Header */}
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-10 md:mb-16">
+      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-10 md:mb-16">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -461,7 +472,7 @@ export function Services() {
       </div>
 
       {/* DESKTOP GRID */}
-      <div className="hidden md:block w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
+      <div className="relative hidden md:block w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
           {desktopVisible.map((service) => (
             <ServiceCard key={service.title} service={service} plain />
@@ -497,7 +508,7 @@ export function Services() {
       </div>
 
       {/* MOBILE CAROUSEL */}
-      <div ref={carouselRef} className="md:hidden w-full overflow-x-auto pb-6 hide-scrollbar pl-6 snap-x snap-mandatory">
+      <div ref={carouselRef} className="relative md:hidden w-full overflow-x-auto pb-6 hide-scrollbar pl-6 snap-x snap-mandatory">
         <div className="flex gap-6 w-max pr-6">
           <AnimatePresence mode="popLayout">
             {filtered.map((service) => (
@@ -518,7 +529,7 @@ export function Services() {
         count={filtered.length}
         resetKey={activeCategory}
         maxVisible={7}
-        className="md:hidden pt-2 pb-2"
+        className="relative md:hidden pt-2 pb-2"
       />
     </section>
   );

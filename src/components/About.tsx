@@ -11,27 +11,17 @@ export function About() {
       className="relative py-14 md:py-32 lg:py-12 lg:min-h-[calc(100vh-6rem)] lg:flex lg:items-center bg-canvas border-t border-micro/20 overflow-hidden scroll-mt-24"
     >
       {/* ─── Background layering (bottom → top) ─────────────────
-          1. Optional photo backdrop — drop your interior shot in
-             here when ready. Uncomment and set the src.
-          2. Canvas wash — softens + tints whatever sits behind.
-          3. Grain texture — letterpress paper feel.
-          4. Subtle warmth vignettes — ambient color pooling. */}
+          1. Photo backdrop
+          2. Grain texture — letterpress paper feel
+          3. Subtle warmth vignettes — ambient color pooling */}
 
-      {/* 1. Photo backdrop (add when image is ready) */}
-      {/*
+      {/* 1. Photo backdrop */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage: "url('/eh_public_assets/about/REPLACE_ME.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(2px)',
-        }}
+        className="absolute inset-0 pointer-events-none bg-cover bg-center"
+        style={{ backgroundImage: "url('/eh_public_assets/gallery/gallery19@full.webp')" }}
       />
-      <div className="absolute inset-0 pointer-events-none bg-canvas/70" />
-      */}
 
-      {/* 3. Grain */}
+      {/* 2. Grain */}
       <div className="absolute inset-0 pattern-grain opacity-70 mix-blend-multiply pointer-events-none" />
 
       {/* 4. Ambient warmth vignettes */}
