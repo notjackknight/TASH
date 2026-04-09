@@ -20,7 +20,7 @@ export function GiftCards() {
             <div className="inline-flex items-center gap-3 mb-3 md:mb-4 text-anchor">
               <GiftIcon size={18} strokeWidth={1.5} />
               <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-                The Haus, Wrapped
+                Wrapped
               </span>
             </div>
             <h2 className="font-serif text-4xl md:text-6xl text-anchor mb-4 md:mb-6 leading-[1.05]">

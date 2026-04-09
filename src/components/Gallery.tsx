@@ -350,7 +350,7 @@ export function Gallery() {
     <section ref={sectionRef} id="gallery" className="relative py-10 md:py-20 lg:py-12 bg-white border-t border-micro/20 scroll-mt-24 overflow-hidden">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
-        className="absolute inset-0 pointer-events-none bg-scroll md:bg-fixed"
+        className="absolute inset-0 pointer-events-none bg-fixed"
         style={{
           backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
           backgroundRepeat: 'repeat',
@@ -371,7 +371,7 @@ export function Gallery() {
           <div className="inline-flex items-center gap-3 mb-4 text-action">
             <SparklesIcon size={18} strokeWidth={1.5} />
             <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-              The Haus, in Frames
+              In Frames
             </span>
           </div>
           <h2 className="font-serif text-5xl md:text-6xl text-anchor">Gallery</h2>

@@ -8,37 +8,33 @@ type Props = {
   count: number;
   /** When this key changes, active slide resets to 0 (e.g. category change). */
   resetKey?: string | number;
-  /** Max number of dots to render at once. Defaults to 7. */
+  /** Max number of dots visible at full size. Defaults to 5. */
   maxVisible?: number;
   /** Tailwind class(es) for wrapper. */
   className?: string;
 };
 
 /**
- * Dots indicator for a horizontally-scrolling carousel.
+ * iOS-style carousel dots.
  *
- * - Reads scroll position from the given scrollRef and derives the active slide
- *   by measuring the first slide's width (+ gap). rAF-throttled.
- * - When `count > maxVisible`, renders a sliding window: always shows
- *   `maxVisible` dots, with the active one staying near the middle. Edge dots
- *   shrink to hint at more content.
- * - Active dot grows and becomes fully opaque. Inactive dots sit at low opacity.
+ * Renders all dots but uses a distance-based scale/opacity curve so only a
+ * handful near the active index are visible at any time. The strip is
+ * translated so the active dot stays centred — no window math, no key
+ * swapping, no layout jumps.
  */
 export function CarouselDots({
   scrollRef,
   count,
   resetKey,
-  maxVisible = 7,
+  maxVisible = 5,
   className = '',
 }: Props) {
   const [active, setActive] = useState(0);
 
-  // Reset when caller signals (e.g. category filter changed).
   useEffect(() => {
     setActive(0);
   }, [resetKey]);
 
-  // Track scroll → active index.
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -49,10 +45,10 @@ export function CarouselDots({
       const track = el.firstElementChild as HTMLElement | null;
       const firstSlide = track?.firstElementChild as HTMLElement | null;
       if (!firstSlide) return;
-      // Measure gap from the flex track's computed style so we're not relying
-      // on a hard-coded value that can drift from the Tailwind class.
       const trackStyle = track ? window.getComputedStyle(track) : null;
-      const gap = trackStyle ? parseFloat(trackStyle.columnGap || trackStyle.gap || '0') || 0 : 0;
+      const gap = trackStyle
+        ? parseFloat(trackStyle.columnGap || trackStyle.gap || '0') || 0
+        : 0;
       const slideWidth = firstSlide.offsetWidth + gap;
       if (slideWidth <= 0) return;
       const idx = Math.round(el.scrollLeft / slideWidth);
@@ -64,7 +60,6 @@ export function CarouselDots({
       frame = requestAnimationFrame(compute);
     };
 
-    // Compute once in case the carousel is pre-scrolled.
     compute();
     el.addEventListener('scroll', onScroll, { passive: true });
     return () => {
@@ -75,37 +70,45 @@ export function CarouselDots({
 
   if (count <= 1) return null;
 
-  // Compute the visible window of dot indices.
-  // When count ≤ maxVisible, show them all.
-  // Otherwise, center the window on `active` and clamp to [0, count-1].
-  const visibleCount = Math.min(count, maxVisible);
-  const half = Math.floor(visibleCount / 2);
-  let start = active - half;
-  if (start < 0) start = 0;
-  if (start + visibleCount > count) start = count - visibleCount;
+  // Dot sizing: 6px base, 8px gap between centres
+  const DOT = 6;
+  const GAP = 8;
+  const step = DOT + GAP; // 14px per dot
+  const half = Math.floor(maxVisible / 2);
 
-  // Which position within the visible window is currently active?
-  // Keyed by window slot (0..visibleCount-1) rather than absolute index, so
-  // the dot strip has a stable layout even as the window slides past the
-  // underlying list — no reshuffle, no animation glitch.
-  const activeInWindow = active - start;
+  // Translate the strip so the active dot is always centred
+  const offset = -active * step;
 
   return (
-    <div className={`flex items-center justify-center gap-2 ${className}`}>
-      {Array.from({ length: visibleCount }).map((_, slot) => {
-        const isActive = slot === activeInWindow;
-        return (
-          <motion.span
-            key={slot}
-            animate={{
-              scale: isActive ? 1.4 : 1,
-              opacity: isActive ? 1 : 0.35,
-            }}
-            transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-            className="block w-1.5 h-1.5 rounded-full bg-anchor"
-          />
-        );
-      })}
+    <div className={`flex justify-center overflow-hidden ${className}`}>
+      {/* Fixed-width viewport that clips the tails */}
+      <div
+        className="relative overflow-hidden"
+        style={{ width: maxVisible * step - GAP }}
+      >
+        <motion.div
+          className="flex items-center"
+          style={{ gap: GAP }}
+          animate={{ x: offset + half * step }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        >
+          {Array.from({ length: count }).map((_, i) => {
+            const dist = Math.abs(i - active);
+            // Active = full size, neighbours shrink, far dots vanish
+            const scale = dist === 0 ? 1.35 : dist <= half ? 1 - dist * 0.15 : 0.4;
+            const opacity = dist === 0 ? 1 : dist <= half ? 0.5 - dist * 0.08 : 0;
+            return (
+              <motion.span
+                key={i}
+                animate={{ scale, opacity }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                className="block shrink-0 rounded-full bg-anchor"
+                style={{ width: DOT, height: DOT }}
+              />
+            );
+          })}
+        </motion.div>
+      </div>
     </div>
   );
 }

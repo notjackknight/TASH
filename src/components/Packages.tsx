@@ -359,7 +359,7 @@ function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
 
 // Featured IDs: the two headline packages shown large on row 1 of the
 // desktop editorial grid. Everything else falls into row 2 in array order.
-const FEATURED_IDS = ['blemish-breakout', 'bridal'] as const;
+const FEATURED_IDS = ['baby-bump', 'bridal'] as const;
 
 export function Packages() {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -376,17 +376,26 @@ export function Packages() {
       id="packages"
       className="relative py-12 md:py-16 lg:py-10 lg:min-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:justify-center bg-canvas border-t border-micro/20 scroll-mt-24 overflow-hidden"
     >
-      {/* Tiled background image */}
+      {/* Background image — mobile */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none lg:hidden"
         style={{
-          backgroundImage: "url('/eh_public_assets/backgrounds/packages_bg.webp')",
-          backgroundRepeat: 'repeat',
-          backgroundSize: '800px auto',
+          backgroundImage: "url('/eh_public_assets/Haus_Packages/HP_BG_mobile.jpg')",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       />
-      {/* Heavy canvas wash over the background */}
-      <div className="absolute inset-0 pointer-events-none bg-canvas/88" />
+      {/* Background image — desktop */}
+      <div
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        style={{
+          backgroundImage: "url('/eh_public_assets/Haus_Packages/HP_BG_New.jpg')",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
 
       <div className="relative w-full">
         {/* Header */}
@@ -433,6 +442,19 @@ export function Packages() {
 
         {/* MOBILE + TABLET — carousel (lg-down) */}
         <div className="relative lg:hidden">
+          {/* Mobile-only swipe hint */}
+          <div className="md:hidden mb-4 flex items-center gap-3 text-white/80 pl-6">
+            <span className="uppercase tracking-[0.2em] text-[10px] font-semibold">
+              Swipe to explore
+            </span>
+            <motion.div
+              animate={{ x: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+              className="flex items-center"
+            >
+              <ArrowRight02Icon size={18} strokeWidth={1.75} />
+            </motion.div>
+          </div>
           <div
             ref={carouselRef}
             className="w-full overflow-x-auto hide-scrollbar pl-6 md:pl-12 snap-x snap-mandatory"

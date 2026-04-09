@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowDown01Icon } from 'hugeicons-react';
+import { ArrowRight } from 'lucide-react';
 
 const HERO_IMAGE = '/eh_public_assets/hero/hero_asset.webp';
 
@@ -41,9 +42,12 @@ export function Hero() {
             <motion.button
               whileTap={{ scale: 0.96, backgroundColor: '#334D12', color: '#ffffff' }}
               transition={{ duration: 0.2 }}
-              className="no-radius bg-white text-anchor border-2 border-transparent px-10 py-5 uppercase tracking-[0.2em] text-sm font-medium hover:bg-action hover:text-white transition-colors duration-300"
+              className="group no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-10 py-5 uppercase tracking-[0.2em] text-sm font-bold hover:from-action hover:to-action hover:text-white transition-colors duration-300"
             >
-              Book Now
+              <span className="flex items-center justify-center gap-3">
+                Book Now
+                <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+              </span>
             </motion.button>
             <motion.button
               whileTap={{ scale: 0.96, backgroundColor: '#334D12', color: '#ffffff', borderColor: '#334D12' }}

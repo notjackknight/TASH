@@ -1,6 +1,16 @@
 import { useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'motion/react';
-import { ArrowRight02Icon, ArrowDown01Icon, ArrowUp01Icon, SparklesIcon } from 'hugeicons-react';
+import {
+  ArrowRight02Icon,
+  ArrowDown01Icon,
+  ArrowUp01Icon,
+  SparklesIcon,
+  EyeIcon,
+  QuillWrite01Icon,
+  DiamondIcon,
+  FeatherIcon,
+  Sun03Icon,
+} from 'hugeicons-react';
 import { CarouselDots } from './CarouselDots';
 
 type Service = {
@@ -21,6 +31,18 @@ const categories = [
 ] as const;
 
 type Category = typeof categories[number];
+
+const categoryMeta: Record<
+  Exclude<Category, 'All'>,
+  { icon: typeof SparklesIcon; label: string }
+> = {
+  Facials: { icon: SparklesIcon, label: 'Facial Protocol' },
+  Lashes: { icon: EyeIcon, label: 'Lash Enhancement' },
+  Brows: { icon: QuillWrite01Icon, label: 'Brow Studio' },
+  Advanced: { icon: DiamondIcon, label: 'Advanced Treatment' },
+  Waxing: { icon: FeatherIcon, label: 'Waxing Service' },
+  Finishing: { icon: Sun03Icon, label: 'Finishing Touch' },
+};
 
 const services: Service[] = [
   // ─── Top picks (cross-category, for "All" preview) ───────
@@ -288,6 +310,9 @@ function ServiceCard({ service, plain = false }: { service: Service; plain?: boo
     ? service.desc.slice(0, READ_MORE_THRESHOLD).trimEnd() + '\u2026'
     : service.desc;
 
+  const meta = categoryMeta[service.category as Exclude<Category, 'All'>];
+  const Icon = meta.icon;
+
   const Article: any = plain ? 'article' : motion.article;
   const articleProps = plain
     ? {}
@@ -302,52 +327,65 @@ function ServiceCard({ service, plain = false }: { service: Service; plain?: boo
   return (
     <Article
       {...articleProps}
-      className="group relative flex flex-col bg-white border border-micro/20 no-radius overflow-hidden hover:border-anchor/60 transition-colors duration-300"
+      className="group relative flex flex-col bg-white border-2 border-anchor/25 no-radius overflow-hidden hover:bg-canvas/20 transition-all duration-300 ease-in-out"
     >
-      {/* Image / placeholder — top 50% */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-micro/15 bg-gradient-to-br from-canvas via-identity/30 to-canvas">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="font-serif italic text-anchor/30 text-2xl tracking-widest">
-            the haus
-          </div>
-        </div>
-        <div className="absolute top-4 left-4 px-3 py-1 bg-white/80 backdrop-blur-sm border border-anchor/20 uppercase tracking-[0.18em] text-[10px] font-semibold text-anchor">
-          {service.category}
-        </div>
-      </div>
-
-      {/* Content — bottom 50% */}
-      <div className="flex-1 flex flex-col p-6 md:p-7">
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="font-serif text-2xl md:text-[1.6rem] leading-tight text-anchor">
-            {service.title}
-          </h3>
-          <span className="font-serif text-3xl md:text-4xl text-action whitespace-nowrap pt-1">
-            {service.price}
+      <div className="flex-1 flex flex-col p-7 md:p-8">
+        {/* Eyebrow — icon + category label */}
+        <div className="flex items-center gap-2 mb-5">
+          <span className="text-action">
+            <Icon size={18} strokeWidth={1.4} />
+          </span>
+          <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-action">
+            {meta.label}
           </span>
         </div>
 
-        <div className="text-anchor/70 text-sm leading-relaxed mb-6 flex-1">
+        {/* Title */}
+        <h3 className="font-serif font-bold text-[1.35rem] md:text-[1.5rem] leading-tight text-anchor mb-3">
+          {service.title}
+        </h3>
+
+        {/* Description */}
+        <div className="text-micro text-[0.85rem] md:text-sm font-light leading-[1.65] mb-0 flex-1">
           <motion.p layout="position">
             {expanded || !isLong ? service.desc : shortDesc}
           </motion.p>
           {isLong && (
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="mt-2 text-[#b54545] uppercase tracking-[0.18em] text-[10px] font-semibold hover:text-[#8a2f2f] transition-colors"
+              className="mt-2 text-action uppercase tracking-[0.18em] text-[10px] font-semibold hover:text-anchor transition-colors"
             >
               {expanded ? 'Read less' : 'Read more'}
             </button>
           )}
         </div>
 
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          className="no-radius w-full bg-anchor text-white border-2 border-transparent py-4 uppercase tracking-[0.25em] text-xs font-semibold hover:bg-white hover:text-action hover:border-action transition-colors duration-300 flex items-center justify-center gap-3"
-        >
-          <span>Select</span>
-          <ArrowRight02Icon size={16} strokeWidth={2} />
-        </motion.button>
+        {/* Structural divider */}
+        <hr className="border-0 h-px bg-canvas group-hover:bg-action/30 transition-colors duration-300 ease-in-out mt-6 mb-0" />
+
+        {/* Footer specs — Price | Select */}
+        <div className="flex items-stretch -mx-7 md:-mx-8">
+          {/* Price — left */}
+          <div className="flex-1 flex items-center px-7 md:px-8 py-4">
+            <span className="font-serif font-bold text-3xl md:text-[2rem] text-anchor">
+              {service.price}
+            </span>
+          </div>
+
+          {/* Vertical divider */}
+          <div className="w-px bg-canvas group-hover:bg-action/30 transition-colors duration-300 ease-in-out" />
+
+          {/* Select — right */}
+          <div className="flex-1 flex items-center justify-center px-7 md:px-8 py-4">
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              className="no-radius bg-anchor text-white border-2 border-transparent px-6 py-3 uppercase tracking-[0.25em] text-[10px] font-semibold inline-flex items-center gap-2.5 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
+            >
+              <span>Select</span>
+              <ArrowRight02Icon size={14} strokeWidth={1.8} />
+            </motion.button>
+          </div>
+        </div>
       </div>
     </Article>
   );
@@ -391,7 +429,7 @@ export function Services() {
     <section ref={sectionRef} id="services" className="py-16 md:py-20 bg-white relative overflow-hidden scroll-mt-24">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
-        className="absolute inset-0 pointer-events-none bg-scroll md:bg-fixed"
+        className="absolute inset-0 pointer-events-none bg-fixed"
         style={{
           backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
           backgroundRepeat: 'repeat',
@@ -508,18 +546,16 @@ export function Services() {
       </div>
 
       {/* MOBILE CAROUSEL */}
-      <div ref={carouselRef} className="relative md:hidden w-full overflow-x-auto pb-6 hide-scrollbar pl-6 snap-x snap-mandatory">
+      <div className="relative md:hidden w-full overflow-x-auto pb-6 hide-scrollbar pl-6 snap-x snap-mandatory" ref={carouselRef}>
         <div className="flex gap-6 w-max pr-6">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((service) => (
-              <div
-                key={service.title}
-                className="snap-center w-[82vw] max-w-[360px] flex"
-              >
-                <ServiceCard service={service} />
-              </div>
-            ))}
-          </AnimatePresence>
+          {filtered.map((service) => (
+            <div
+              key={service.title}
+              className="snap-center w-[82vw] max-w-[360px] flex"
+            >
+              <ServiceCard service={service} plain />
+            </div>
+          ))}
         </div>
       </div>
 
