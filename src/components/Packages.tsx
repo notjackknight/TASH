@@ -11,14 +11,14 @@ import {
   Tick02Icon,
   Cancel01Icon,
 } from 'hugeicons-react';
-// Package purchase uses Checkout API (Payment Links)
+const BOOKING_BASE = 'https://book.squareup.com/appointments/lu0cj345hv4hr2/location/LVZVXGQCTDSJM/services';
 
 type Package = {
   id: string;
+  squareItemId: string;
   title: string;
   bestFor: string;
   price: string;
-  priceCents: number;
   Icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
   image?: string;
   description: string;
@@ -30,10 +30,10 @@ type Package = {
 const packages: Package[] = [
   {
     id: 'bridal',
+    squareItemId: '76N4X4FCXR7BQ5664YDDVSFZ',
     title: 'The Bridal Haus Experience',
     bestFor: 'Brides',
     price: '$785',
-    priceCents: 78500,
     Icon: CrownIcon,
     image: '/eh_public_assets/Haus_Packages/The_Bridal_Haus_Experience.webp',
     description:
@@ -59,10 +59,10 @@ const packages: Package[] = [
   },
   {
     id: 'new-mommy',
+    squareItemId: '', // Not yet in Square — links to general booking page
     title: 'The Haus New Mommy Reset Glow Package',
     bestFor: 'New Moms',
     price: '$400',
-    priceCents: 40000,
     Icon: FlowerIcon,
     image: '/eh_public_assets/Haus_Packages/The_Haus_New_Mommy_Reset_Glow_Package.webp',
     description:
@@ -70,10 +70,10 @@ const packages: Package[] = [
   },
   {
     id: 'baby-bump',
+    squareItemId: 'LJDOK3TP4H5NF42BJR6FVHTG',
     title: 'The Haus Baby Bump Package',
     bestFor: 'Expecting Moms',
     price: '$225',
-    priceCents: 22500,
     Icon: Baby01Icon,
     image: '/eh_public_assets/Haus_Packages/The_Haus_Baby_Bump_Package.webp',
     description:
@@ -81,10 +81,10 @@ const packages: Package[] = [
   },
   {
     id: 'molecular-peel',
+    squareItemId: '3YLSHWRCH6VNWHCAQFN3DTJV',
     title: 'The Haus Molecular Peel Package',
     bestFor: 'Skin Renewal',
     price: '$840',
-    priceCents: 84000,
     Icon: Leaf01Icon,
     image: '/eh_public_assets/Haus_Packages/The_Haus_Molecular_Peel_Package.webp',
     description:
@@ -92,10 +92,10 @@ const packages: Package[] = [
   },
   {
     id: 'blemish-breakout',
+    squareItemId: '2A7PZDYEUV5MGISXTAYL3UJF',
     title: 'The Haus Blemish + Breakout Package',
     bestFor: 'Acne Care',
     price: '$2,300',
-    priceCents: 230000,
     Icon: SparklesIcon,
     image: '/eh_public_assets/Haus_Packages/The_Haus_Blemish+Breakout_Package.webp',
     description:
@@ -205,30 +205,9 @@ function CompactCard({
 
 function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
   const { Icon } = pkg;
-  const [purchasing, setPurchasing] = useState(false);
-  const [purchaseError, setPurchaseError] = useState('');
-
-  async function handlePurchase() {
-    setPurchasing(true);
-    setPurchaseError('');
-    try {
-      const res = await fetch('/api/packages/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          packageId: pkg.id,
-          title: pkg.title,
-          priceCents: pkg.priceCents,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) throw new Error((data as { error?: string }).error || 'Failed to create checkout.');
-      window.location.href = data.url;
-    } catch (err: unknown) {
-      setPurchaseError(err instanceof Error ? err.message : 'Something went wrong.');
-      setPurchasing(false);
-    }
-  }
+  const bookingUrl = pkg.squareItemId
+    ? `${BOOKING_BASE}/${pkg.squareItemId}`
+    : `${BOOKING_BASE}`;
 
   // Esc key + body scroll lock
   useEffect(() => {
@@ -374,20 +353,16 @@ function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
                 {pkg.price}
               </span>
             </div>
-            <div className="flex flex-col items-end gap-2">
-              {purchaseError && (
-                <span className="text-red-600 text-xs">{purchaseError}</span>
-              )}
-              <motion.button
-                whileTap={{ scale: 0.97 }}
-                onClick={handlePurchase}
-                disabled={purchasing}
-                className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300 disabled:opacity-50 disabled:pointer-events-none"
-              >
-                <span>{purchasing ? 'Preparing checkout...' : 'Purchase'}</span>
-                <ArrowRight02Icon size={14} strokeWidth={2} />
-              </motion.button>
-            </div>
+            <motion.a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileTap={{ scale: 0.97 }}
+              className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
+            >
+              <span>Book Package</span>
+              <ArrowRight02Icon size={14} strokeWidth={2} />
+            </motion.a>
           </div>
         </div>
       </motion.div>
