@@ -16,6 +16,7 @@ const BOOKING_BASE = 'https://book.squareup.com/appointments/lu0cj345hv4hr2/loca
 type Package = {
   id: string;
   squareItemId: string;
+  directUrl?: string; // Override URL for packages not set up as appointment services
   title: string;
   bestFor: string;
   price: string;
@@ -59,7 +60,8 @@ const packages: Package[] = [
   },
   {
     id: 'new-mommy',
-    squareItemId: '', // Not yet in Square — links to general booking page
+    squareItemId: '', // Regular catalog item, not an appointment service — uses directUrl instead
+    directUrl: 'https://square.link/u/htvG5sXm',
     title: 'The Haus New Mommy Reset Glow Package',
     bestFor: 'New Moms',
     price: '$400',
@@ -205,9 +207,8 @@ function CompactCard({
 
 function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
   const { Icon } = pkg;
-  const bookingUrl = pkg.squareItemId
-    ? `${BOOKING_BASE}/${pkg.squareItemId}`
-    : `${BOOKING_BASE}`;
+  const bookingUrl = pkg.directUrl
+    || (pkg.squareItemId ? `${BOOKING_BASE}/${pkg.squareItemId}` : `${BOOKING_BASE}`);
 
   // Esc key + body scroll lock
   useEffect(() => {
