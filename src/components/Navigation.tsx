@@ -11,7 +11,7 @@ import {
   Tick02Icon,
   Award02Icon,
 } from 'hugeicons-react';
-import { useBooking } from '../hooks/useBooking';
+import { openBooking } from '../hooks/useBooking';
 
 type ModalKey = 'affiliate' | 'refer' | null;
 
@@ -31,7 +31,6 @@ const menuItems: MenuItem[] = [
 ];
 
 export function Navigation() {
-  const { openBooking } = useBooking();
   const [menuOpen, setMenuOpen] = useState(false);
   const [modal, setModal] = useState<ModalKey>(null);
 

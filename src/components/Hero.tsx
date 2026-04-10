@@ -1,12 +1,11 @@
 import { motion } from 'motion/react';
 import { ArrowDown01Icon } from 'hugeicons-react';
 import { ArrowRight } from 'lucide-react';
-import { useBooking } from '../hooks/useBooking';
+import { openBooking } from '../hooks/useBooking';
 
 const HERO_IMAGE = '/eh_public_assets/hero/hero_asset.webp';
 
 export function Hero() {
-  const { openBooking } = useBooking();
   return (
     <section className="relative w-full min-h-[calc(100svh-5rem)] lg:min-h-0 lg:h-[calc(100vh-6rem)] flex items-center overflow-hidden bg-anchor">
       {/* Full-bleed background image (all breakpoints) */}

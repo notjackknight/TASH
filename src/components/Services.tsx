@@ -12,7 +12,7 @@ import {
   Sun03Icon,
 } from 'hugeicons-react';
 import { CarouselDots } from './CarouselDots';
-import { useBooking } from '../hooks/useBooking';
+import { openBooking } from '../hooks/useBooking';
 
 type Service = {
   title: string;
@@ -305,7 +305,6 @@ const DESKTOP_PREVIEW = 3;
 const READ_MORE_THRESHOLD = 140;
 
 function ServiceCard({ service, plain = false }: { service: Service; plain?: boolean }) {
-  const { openBooking } = useBooking();
   const [expanded, setExpanded] = useState(false);
   const isLong = service.desc.length > READ_MORE_THRESHOLD;
   const shortDesc = isLong
