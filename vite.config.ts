@@ -15,6 +15,9 @@ export default defineConfig(({mode}) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    // VITE_* env vars are automatically exposed to the client.
+    // SQUARE_ACCESS_TOKEN and other server-only vars are NOT prefixed
+    // with VITE_ and are only available in Cloudflare Pages Functions.
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.

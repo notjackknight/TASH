@@ -12,6 +12,7 @@ import {
   Sun03Icon,
 } from 'hugeicons-react';
 import { CarouselDots } from './CarouselDots';
+import { useBooking } from '../hooks/useBooking';
 
 type Service = {
   title: string;
@@ -59,7 +60,7 @@ const services: Service[] = [
     category: 'Lashes',
   },
   {
-    title: 'The Haus Brow Wax',
+    title: 'Brow Wax',
     desc: 'Precise shaping and definition for a clean, polished look. Gentle techniques ensure easy removal and long-lasting results, customized to enhance your facial features.',
     price: '$28',
     category: 'Brows',
@@ -81,7 +82,7 @@ const services: Service[] = [
   {
     title: 'Brightening Haus Facial',
     desc: 'Designed to restore radiance and even skin tone. Uses gentle exfoliants and molecular peels from Cosmedix to correct hyperpigmentation, dullness, and discoloration — leaving your complexion smooth, refreshed, and visibly glowing.',
-    price: '$135',
+    price: '$120',
     category: 'Facials',
   },
   {
@@ -99,7 +100,7 @@ const services: Service[] = [
   {
     title: 'Calm Haus Facial',
     desc: 'A personalized skincare service using Cosmedix to nourish your skin with their premium ingredients. Leaving the haus soothed, hydrated, and radiant.',
-    price: '$120',
+    price: '$110',
     category: 'Facials',
   },
   {
@@ -153,9 +154,9 @@ const services: Service[] = [
     category: 'Lashes',
   },
   {
-    title: 'The Power Haus Volume Full Set',
+    title: 'The Power House Volume Full Set',
     desc: 'No mega volumes in this haus — but definitely some power and dramatic lashes to create a gorgeously fluffy set.',
-    price: '$200',
+    price: '$250',
     category: 'Lashes',
   },
   {
@@ -177,7 +178,7 @@ const services: Service[] = [
     category: 'Lashes',
   },
   {
-    title: 'Lash Removal',
+    title: 'The Haus Lash Removal',
     desc: 'Using Lost Artistry\u2019s lash removal, we leave you bare with all your natural lashes free to breathe. Say goodbye to the oldies.',
     price: '$60',
     category: 'Lashes',
@@ -185,7 +186,7 @@ const services: Service[] = [
 
   // ─── Brows (popularity order) ────────────────────────────
   {
-    title: 'Brow Code Haus Brow Tint',
+    title: 'Brow Code Brow Tint',
     desc: 'Enhance your natural brows with long-lasting color, tailored to complement your features.',
     price: '$20',
     category: 'Brows',
@@ -205,7 +206,7 @@ const services: Service[] = [
 
   // ─── Advanced Treatments (popularity order) ──────────────
   {
-    title: 'Microneedling Treatment',
+    title: 'Haus Microneedling Treatment',
     desc: 'A targeted skincare service designed to stimulate collagen production, reduce the appearance of fine lines, and promote overall skin rejuvenation. Ideal for enhancing skin texture and tone with minimal downtime.',
     price: '$250',
     category: 'Advanced',
@@ -219,11 +220,11 @@ const services: Service[] = [
   {
     title: 'The Haus of LED Therapy',
     desc: 'A non-invasive skin treatment that uses different colors of light to help heal skin, reduce acne, calm inflammation, and boost collagen — safe, gentle, and painless. Available as an add-on or stand-alone service. As a stand-alone, it includes a double cleanse, skin analysis, toning, mask, and LED.',
-    price: '$105',
+    price: '$100',
     category: 'Advanced',
   },
   {
-    title: 'Haus Scalp Treatment & Massage',
+    title: 'Haus Scalp Treatment and Massage',
     desc: 'A deep scalp reset designed to cleanse, stimulate, and get your crown back in alignment. Luxe scalp treatment plus a stress-melting massage for healthy roots and total relaxation.',
     price: '$60',
     category: 'Advanced',
@@ -281,7 +282,7 @@ const services: Service[] = [
 
   // ─── Finishing Touches (popularity order) ────────────────
   {
-    title: 'Custom Haus Spray Tan',
+    title: 'The Haus Spray Tan',
     desc: 'A custom, natural-looking tan using premium Norvell solutions for even application and long-lasting results. Tailored to your skin tone for a flawless, sun-kissed glow.',
     price: '$60',
     category: 'Finishing',
@@ -293,7 +294,7 @@ const services: Service[] = [
     category: 'Finishing',
   },
   {
-    title: 'The Haus of Gems',
+    title: 'Haus of Gems',
     desc: 'Tooth gems made with authentic Swarovski crystals, designed to add a subtle sparkle or bold shine to your smile. Professionally applied with safe dental-grade adhesive — comfortable, non-invasive, and lasting over a year with proper care. Stylish, durable, and removable by a professional.',
     price: '$70 / gem',
     category: 'Finishing',
@@ -304,6 +305,7 @@ const DESKTOP_PREVIEW = 3;
 const READ_MORE_THRESHOLD = 140;
 
 function ServiceCard({ service, plain = false }: { service: Service; plain?: boolean }) {
+  const { openBooking } = useBooking();
   const [expanded, setExpanded] = useState(false);
   const isLong = service.desc.length > READ_MORE_THRESHOLD;
   const shortDesc = isLong
@@ -379,6 +381,7 @@ function ServiceCard({ service, plain = false }: { service: Service; plain?: boo
           <div className="flex-1 flex items-center justify-center px-7 md:px-8 py-4">
             <motion.button
               whileTap={{ scale: 0.97 }}
+              onClick={() => openBooking(service.title)}
               className="no-radius bg-anchor text-white border-2 border-transparent px-6 py-3 uppercase tracking-[0.25em] text-[10px] font-semibold inline-flex items-center gap-2.5 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
             >
               <span>Select</span>

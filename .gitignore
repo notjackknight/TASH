@@ -6,7 +6,9 @@ coverage/
 *.log
 .env*
 !.env.example
+SQUARE_SETUP.md
 .claude/
+.wrangler/
 .vscode/
 .idea/
 Thumbs.db

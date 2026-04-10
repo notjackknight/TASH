@@ -1,8 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  UserIcon,
-  ShoppingCart01Icon,
+  Calendar03Icon,
   Menu02Icon,
   Cancel01Icon,
   ArrowRight02Icon,
@@ -12,6 +11,7 @@ import {
   Tick02Icon,
   Award02Icon,
 } from 'hugeicons-react';
+import { useBooking } from '../hooks/useBooking';
 
 type ModalKey = 'affiliate' | 'refer' | null;
 
@@ -31,6 +31,7 @@ const menuItems: MenuItem[] = [
 ];
 
 export function Navigation() {
+  const { openBooking } = useBooking();
   const [menuOpen, setMenuOpen] = useState(false);
   const [modal, setModal] = useState<ModalKey>(null);
 
@@ -100,23 +101,36 @@ export function Navigation() {
 
           {/* RIGHT — Account / actions */}
           <div className="flex items-center justify-end gap-4 md:gap-5 text-white">
-            {/* Desktop Sign In + Cart */}
-            <button className="hidden md:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium">
-              <UserIcon size={20} strokeWidth={1.5} />
-              <span>Sign In</span>
-            </button>
-            <div className="hidden md:block w-px h-4 bg-white/30"></div>
-            <button className="hidden md:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium">
-              <ShoppingCart01Icon size={20} strokeWidth={1.5} />
-              <span>Cart</span>
+            {/* Desktop My Appointments (only when URL configured) + Book Now */}
+            {import.meta.env.VITE_SQUARE_BOOKING_URL && (
+              <>
+                <a
+                  href={import.meta.env.VITE_SQUARE_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium"
+                >
+                  <Calendar03Icon size={20} strokeWidth={1.5} />
+                  <span>My Appointments</span>
+                </a>
+                <div className="hidden md:block w-px h-4 bg-white/30" />
+              </>
+            )}
+            <button
+              onClick={() => openBooking()}
+              className="hidden md:flex no-radius bg-action text-white px-5 py-2.5 hover:bg-white hover:text-action transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-semibold"
+            >
+              <span>Book Now</span>
+              <ArrowRight02Icon size={14} strokeWidth={2} />
             </button>
 
-            {/* Mobile cart */}
+            {/* Mobile Book Now */}
             <button
-              aria-label="Cart"
+              aria-label="Book Now"
+              onClick={() => openBooking()}
               className="md:hidden p-2 hover:text-canvas transition-colors"
             >
-              <ShoppingCart01Icon size={22} strokeWidth={1.5} />
+              <Calendar03Icon size={22} strokeWidth={1.5} />
             </button>
 
             {/* Mobile hamburger — rightmost */}
@@ -202,13 +216,27 @@ export function Navigation() {
             </nav>
 
             <div className="px-8 pb-10 pt-6 border-t border-anchor/10 flex items-center justify-between text-anchor">
-              <button className="flex items-center gap-2 uppercase tracking-widest text-xs font-medium hover:text-action transition-colors">
-                <UserIcon size={18} strokeWidth={1.5} />
-                <span>Sign In</span>
-              </button>
-              <button className="flex items-center gap-2 uppercase tracking-widest text-xs font-medium hover:text-action transition-colors">
-                <ShoppingCart01Icon size={18} strokeWidth={1.5} />
-                <span>Cart</span>
+              {import.meta.env.VITE_SQUARE_BOOKING_URL && (
+                <a
+                  href={import.meta.env.VITE_SQUARE_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-medium hover:text-action transition-colors"
+                >
+                  <Calendar03Icon size={18} strokeWidth={1.5} />
+                  <span>My Appointments</span>
+                </a>
+              )}
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  openBooking();
+                }}
+                className="no-radius bg-anchor text-white px-5 py-3 flex items-center gap-2 uppercase tracking-widest text-xs font-semibold hover:bg-action transition-colors"
+              >
+                <span>Book Now</span>
+                <ArrowRight02Icon size={14} strokeWidth={2} />
               </button>
             </div>
           </motion.div>

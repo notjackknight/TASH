@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
 import { GiftIcon, ArrowRight02Icon } from 'hugeicons-react';
 
+const GIFT_CARD_URL = 'https://app.squareup.com/gift/ML5QH1ZNJJAR5/order';
+
 export function GiftCards() {
   return (
     <section
@@ -31,13 +33,16 @@ export function GiftCards() {
             <p className="font-sans text-anchor/80 text-sm md:text-lg mb-6 md:mb-10 max-w-md leading-relaxed">
               Digital gift cards for every service and curated skincare product. Choose any value and send it instantly.
             </p>
-            <motion.button
+            <motion.a
+              href={GIFT_CARD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               whileTap={{ scale: 0.97 }}
               className="no-radius bg-anchor text-white border-2 border-transparent px-10 py-4 md:py-5 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center gap-3 hover:bg-identity hover:text-action hover:border-action transition-colors duration-300"
             >
               <span>Purchase</span>
               <ArrowRight02Icon size={14} strokeWidth={2} />
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           {/* Right — gift card mockup */}

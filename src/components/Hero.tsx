@@ -1,10 +1,12 @@
 import { motion } from 'motion/react';
 import { ArrowDown01Icon } from 'hugeicons-react';
 import { ArrowRight } from 'lucide-react';
+import { useBooking } from '../hooks/useBooking';
 
 const HERO_IMAGE = '/eh_public_assets/hero/hero_asset.webp';
 
 export function Hero() {
+  const { openBooking } = useBooking();
   return (
     <section className="relative w-full min-h-[calc(100svh-5rem)] lg:min-h-0 lg:h-[calc(100vh-6rem)] flex items-center overflow-hidden bg-anchor">
       {/* Full-bleed background image (all breakpoints) */}
@@ -42,6 +44,7 @@ export function Hero() {
             <motion.button
               whileTap={{ scale: 0.96, backgroundColor: '#334D12', color: '#ffffff' }}
               transition={{ duration: 0.2 }}
+              onClick={() => openBooking()}
               className="group no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-10 py-5 uppercase tracking-[0.2em] text-sm font-bold hover:from-action hover:to-action hover:text-white transition-colors duration-300"
             >
               <span className="flex items-center justify-center gap-3">

@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight02Icon,
   Location01Icon,
@@ -7,6 +8,7 @@ import {
   Clock01Icon,
   InstagramIcon,
   Directions02Icon,
+  Tick02Icon,
 } from 'hugeicons-react';
 
 const hours = [
@@ -117,42 +119,7 @@ export function Footer() {
     </div>
   );
 
-  const formContent = (
-    <div className="relative w-full bg-white border border-anchor/20 p-5 lg:p-4 overflow-hidden">
-      {/* Decorative monogram watermark */}
-      <div className="absolute -bottom-8 -right-4 font-serif italic text-anchor/[0.04] text-[12rem] lg:text-[7rem] leading-none pointer-events-none select-none">
-        eh
-      </div>
-
-      {/* Header */}
-      <div className="relative">
-        <div className="flex items-center gap-3 mb-3 lg:mb-2 text-action">
-          <Mail01Icon size={16} strokeWidth={1.5} />
-          <span className="uppercase tracking-[0.28em] text-[10px] font-semibold">
-            Get in Touch
-          </span>
-        </div>
-        <h2 className="font-serif text-2xl md:text-3xl text-anchor leading-[1.05] mb-5 lg:hidden">
-          Tell us <span className="italic font-light">everything.</span>
-        </h2>
-      </div>
-
-      <form className="relative flex flex-col gap-4 lg:gap-2">
-        <FormField id="name" label="Name" type="text" />
-        <FormField id="email" label="Email" type="email" />
-        <FormField id="message" label="Message" type="textarea" />
-
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          type="button"
-          className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-3 lg:px-6 lg:py-2.5 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300 self-end mt-2 lg:mt-1"
-        >
-          <span>Send</span>
-          <ArrowRight02Icon size={14} strokeWidth={2} />
-        </motion.button>
-      </form>
-    </div>
-  );
+  const formContent = <ContactForm />;
 
   return (
     <footer className="relative bg-anchor text-white border-t border-micro/20 overflow-hidden">
@@ -246,15 +213,142 @@ export function Footer() {
   );
 }
 
+// ─── Contact form with submission logic ──────────────────────
+type ContactStatus = 'idle' | 'sending' | 'sent' | 'error';
+
+function ContactForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<ContactStatus>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const isValid = name.trim() && email.trim() && message.trim();
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!isValid) return;
+
+    setStatus('sending');
+    setErrorMsg('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error((data as { error?: string }).error || 'Failed to send.');
+      }
+
+      setStatus('sent');
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err: unknown) {
+      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong.');
+      setStatus('error');
+    }
+  }
+
+  return (
+    <div className="relative w-full bg-white border border-anchor/20 p-5 lg:p-4 overflow-hidden">
+      {/* Decorative monogram watermark */}
+      <div className="absolute -bottom-8 -right-4 font-serif italic text-anchor/[0.04] text-[12rem] lg:text-[7rem] leading-none pointer-events-none select-none">
+        eh
+      </div>
+
+      {/* Header */}
+      <div className="relative">
+        <div className="flex items-center gap-3 mb-3 lg:mb-2 text-action">
+          <Mail01Icon size={16} strokeWidth={1.5} />
+          <span className="uppercase tracking-[0.28em] text-[10px] font-semibold">
+            Get in Touch
+          </span>
+        </div>
+        <h2 className="font-serif text-2xl md:text-3xl text-anchor leading-[1.05] mb-5 lg:hidden">
+          Tell us <span className="italic font-light">everything.</span>
+        </h2>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {status === 'sent' ? (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="relative flex flex-col items-center text-center py-6 gap-4"
+          >
+            <div className="w-12 h-12 bg-action/10 flex items-center justify-center">
+              <Tick02Icon size={24} strokeWidth={2} className="text-action" />
+            </div>
+            <p className="font-serif text-lg text-anchor">Message sent!</p>
+            <p className="font-sans text-xs text-anchor/60">
+              We'll be in touch soon.
+            </p>
+            <button
+              onClick={() => setStatus('idle')}
+              className="mt-2 uppercase tracking-[0.2em] text-[10px] font-semibold text-action hover:text-anchor transition-colors"
+            >
+              Send another
+            </button>
+          </motion.div>
+        ) : (
+          <motion.form
+            key="form"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onSubmit={handleSubmit}
+            className="relative flex flex-col gap-4 lg:gap-2"
+          >
+            {status === 'error' && errorMsg && (
+              <div className="text-red-600 text-xs border border-red-200 bg-red-50 p-2">
+                {errorMsg}
+              </div>
+            )}
+
+            <FormField id="name" label="Name" type="text" value={name} onChange={setName} />
+            <FormField id="email" label="Email" type="email" value={email} onChange={setEmail} />
+            <FormField id="message" label="Message" type="textarea" value={message} onChange={setMessage} />
+
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              type="submit"
+              disabled={!isValid || status === 'sending'}
+              className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-3 lg:px-6 lg:py-2.5 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300 self-end mt-2 lg:mt-1 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <span>{status === 'sending' ? 'Sending...' : 'Send'}</span>
+              <ArrowRight02Icon size={14} strokeWidth={2} />
+            </motion.button>
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 // ─── Reusable form field ─────────────────────────────────────
 function FormField({
   id,
   label,
   type,
+  value,
+  onChange,
 }: {
   id: string;
   label: string;
   type: 'text' | 'email' | 'textarea';
+  value: string;
+  onChange: (v: string) => void;
 }) {
   return (
     <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-0.5">
@@ -268,12 +362,16 @@ function FormField({
         <textarea
           id={id}
           rows={2}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
           className="no-radius bg-transparent border-0 border-b border-anchor/30 text-anchor px-0 py-2 md:py-3 lg:py-1 font-serif text-base focus:outline-none focus:border-action focus:border-b-2 transition-all resize-none min-h-[3rem] md:min-h-[6rem] lg:min-h-[2rem]"
         />
       ) : (
         <input
           id={id}
           type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
           className="no-radius bg-transparent border-0 border-b border-anchor/30 text-anchor px-0 py-2 md:py-3 lg:py-1 font-serif text-base focus:outline-none focus:border-action focus:border-b-2 transition-all"
         />
       )}
