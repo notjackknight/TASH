@@ -116,20 +116,16 @@ export function Navigation() {
           {/* RIGHT — Account / actions */}
           <div className="flex items-center justify-end gap-1 md:gap-5 text-white">
             {/* Desktop My Appointments (only when URL configured) + Book Now */}
-            {import.meta.env.VITE_SQUARE_BOOKING_URL && (
-              <>
-                <a
-                  href={import.meta.env.VITE_SQUARE_BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden md:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium"
-                >
-                  <Calendar03Icon size={20} strokeWidth={1.5} />
-                  <span>My Appointments</span>
-                </a>
-                <div className="hidden md:block w-px h-4 bg-white/30" />
-              </>
-            )}
+            <a
+              href="https://app.squareup.com/appointments/book/lu0cj345hv4hr2/LVZVXGQCTDSJM/start"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium"
+            >
+              <Calendar03Icon size={20} strokeWidth={1.5} />
+              <span>My Appointments</span>
+            </a>
+            <div className="hidden md:block w-px h-4 bg-white/30" />
             <button
               onClick={() => navigate('/#services')}
               className="hidden md:flex no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-5 py-4 hover:from-action hover:to-action hover:text-white transition-all duration-300 items-center gap-2 uppercase tracking-widest text-xs font-bold"
@@ -238,18 +234,16 @@ export function Navigation() {
             </nav>
 
             <div className="px-8 pb-10 pt-6 border-t border-anchor/10 flex items-center justify-between text-anchor">
-              {import.meta.env.VITE_SQUARE_BOOKING_URL && (
-                <a
-                  href={import.meta.env.VITE_SQUARE_BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-medium hover:text-action transition-colors"
-                >
-                  <Calendar03Icon size={18} strokeWidth={1.5} />
-                  <span>My Appointments</span>
-                </a>
-              )}
+              <a
+                href="https://app.squareup.com/appointments/book/lu0cj345hv4hr2/LVZVXGQCTDSJM/start"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 uppercase tracking-widest text-xs font-medium hover:text-action transition-colors"
+              >
+                <Calendar03Icon size={18} strokeWidth={1.5} />
+                <span>My Appointments</span>
+              </a>
               <button
                 onClick={() => {
                   setMenuOpen(false);
