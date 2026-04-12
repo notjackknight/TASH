@@ -465,7 +465,7 @@ export function Services() {
     <section ref={sectionRef} id="services" className="py-10 md:py-14 bg-white relative overflow-hidden scroll-mt-24">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
-        className="absolute inset-0 pointer-events-none bg-fixed"
+        className="absolute inset-0 pointer-events-none bg-scroll lg:bg-fixed"
         style={{
           backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
           backgroundRepeat: 'repeat',

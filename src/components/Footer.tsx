@@ -134,7 +134,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ type: 'spring', stiffness: 80, damping: 22 }}
-          className="grid grid-cols-1 lg:grid-cols-2 items-start gap-6 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 items-start gap-6 lg:gap-12"
         >
           {/* LEFT COLUMN — Contact info + Hours */}
           <div className="flex flex-col gap-4 lg:gap-5">
@@ -152,7 +152,7 @@ export function Footer() {
         {/* ─── Bottom strip ───────────────────────────────────── */}
         <div className="pt-8 mt-10 lg:pt-4 lg:mt-6 border-t border-white/20">
           <div className="flex flex-col items-center gap-4 md:gap-6 lg:gap-1 mb-6 md:mb-8 lg:mb-3">
-            <div className="font-serif text-base md:text-3xl lg:text-2xl tracking-[0.18em] md:tracking-[0.25em] uppercase text-white whitespace-nowrap">
+            <div className="font-serif text-base md:text-2xl lg:text-2xl tracking-[0.18em] md:tracking-[0.25em] uppercase text-white whitespace-nowrap">
               The Esthetic Haus
             </div>
             <div className="font-serif italic text-white/50 text-sm">

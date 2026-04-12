@@ -364,7 +364,7 @@ export function Gallery() {
     <section ref={sectionRef} id="gallery" className="relative py-10 md:py-20 lg:py-12 bg-white border-t border-micro/20 scroll-mt-24 overflow-hidden">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
-        className="absolute inset-0 pointer-events-none bg-fixed"
+        className="absolute inset-0 pointer-events-none bg-scroll lg:bg-fixed"
         style={{
           backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
           backgroundRepeat: 'repeat',

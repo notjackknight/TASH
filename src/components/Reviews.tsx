@@ -171,7 +171,7 @@ export function Reviews() {
     >
       {/* Tiled parallax background — matches Services & Gallery */}
       <div
-        className="absolute inset-0 pointer-events-none bg-fixed"
+        className="absolute inset-0 pointer-events-none bg-scroll lg:bg-fixed"
         style={{
           backgroundImage: "url('/eh_public_assets/backgrounds/tile_pattern.webp')",
           backgroundRepeat: 'repeat',

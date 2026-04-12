@@ -83,7 +83,7 @@ export function Navigation() {
           </Link>
 
           {/* CENTER — Section menu (desktop only) */}
-          <ul className="hidden md:flex items-center justify-center gap-6 lg:gap-10">
+          <ul className="hidden lg:flex items-center justify-center gap-6 lg:gap-10">
             {menuItems.map((item) => {
               const linkClass =
                 'group relative uppercase tracking-[0.22em] text-[11px] font-semibold text-white/85 hover:text-white transition-colors duration-300';
@@ -114,21 +114,21 @@ export function Navigation() {
           </ul>
 
           {/* RIGHT — Account / actions */}
-          <div className="flex items-center justify-end gap-1 md:gap-5 text-white">
+          <div className="flex items-center justify-end gap-1 lg:gap-5 text-white">
             {/* Desktop My Appointments (only when URL configured) + Book Now */}
             <a
               href="https://app.squareup.com/appointments/book/lu0cj345hv4hr2/LVZVXGQCTDSJM/start"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium"
+              className="hidden lg:flex hover:text-canvas transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-medium"
             >
               <Calendar03Icon size={20} strokeWidth={1.5} />
               <span>My Appointments</span>
             </a>
-            <div className="hidden md:block w-px h-4 bg-white/30" />
+            <div className="hidden lg:block w-px h-4 bg-white/30" />
             <button
               onClick={() => navigate('/#services')}
-              className="hidden md:flex no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-5 py-4 hover:from-action hover:to-action hover:text-white transition-all duration-300 items-center gap-2 uppercase tracking-widest text-xs font-bold"
+              className="hidden lg:flex no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-5 py-4 hover:from-action hover:to-action hover:text-white transition-all duration-300 items-center gap-2 uppercase tracking-widest text-xs font-bold"
             >
               <span>Book Now</span>
               <ArrowRight02Icon size={14} strokeWidth={2} />
@@ -138,7 +138,7 @@ export function Navigation() {
             <a
               href="tel:9146181809"
               aria-label="Call us"
-              className="md:hidden p-1.5 hover:text-canvas transition-colors"
+              className="lg:hidden p-1.5 hover:text-canvas transition-colors"
             >
               <Call02Icon size={26} strokeWidth={1.5} />
             </a>
@@ -147,7 +147,7 @@ export function Navigation() {
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="md:hidden p-1.5 hover:text-canvas transition-colors"
+              className="lg:hidden p-1.5 hover:text-canvas transition-colors"
             >
               <Menu02Icon size={28} strokeWidth={1.5} />
             </button>
@@ -163,7 +163,7 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[60] bg-white flex flex-col md:hidden"
+            className="fixed inset-0 z-[60] bg-white flex flex-col lg:hidden"
           >
             <div className="flex items-center justify-between px-6 h-20 border-b border-anchor/10 pt-safe">
               <span className="font-serif text-lg tracking-widest uppercase text-anchor">

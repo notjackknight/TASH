@@ -34,14 +34,14 @@ export function About() {
       />
 
       <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-center">
           {/* Portrait — left on desktop, top on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 24, rotate: -3 }}
             whileInView={{ opacity: 1, y: 0, rotate: -2 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ type: 'spring', stiffness: 90, damping: 20 }}
-            className="lg:col-span-5 mx-auto lg:mx-0 w-full max-w-[280px] sm:max-w-xs lg:max-w-none"
+            className="md:col-span-5 lg:col-span-5 mx-auto md:mx-0 lg:mx-0 w-full max-w-[280px] sm:max-w-xs md:max-w-none lg:max-w-none"
           >
             <div className="relative aspect-[3/4] w-full bg-anchor border-2 border-anchor shadow-[10px_10px_0px_rgba(92,40,40,0.25)] md:shadow-[14px_14px_0px_rgba(92,40,40,0.25)] overflow-hidden">
               <img
@@ -69,7 +69,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ type: 'spring', stiffness: 80, damping: 22, delay: 0.1 }}
-            className="lg:col-span-7"
+            className="md:col-span-7 lg:col-span-7"
           >
             <article className="relative bg-white border border-anchor/20 shadow-[10px_10px_0px_rgba(92,40,40,0.12)] md:shadow-[14px_14px_0px_rgba(92,40,40,0.12)] p-5 md:p-12 lg:p-10">
               {/* Headline */}
