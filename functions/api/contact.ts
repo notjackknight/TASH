@@ -5,8 +5,12 @@ import { z } from 'zod';
 
 const ContactSchema = z.object({
   name: z.string().min(1).max(200),
-  email: z.string().email().max(200),
+  email: z.string().email().max(200).optional(),
+  phone: z.string().min(7).max(30).optional(),
   message: z.string().min(1).max(2000),
+  smsConsent: z.boolean().optional(),
+}).refine((data) => data.email || data.phone, {
+  message: 'Either email or phone is required',
 });
 
 interface Env {
@@ -33,7 +37,12 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     );
   }
 
-  const { name, email, message } = parsed.data;
+  const { name, email, phone, message, smsConsent } = parsed.data;
+
+  // Normalize phone to E.164 (US numbers)
+  const normalizedPhone = phone
+    ? '+1' + phone.replace(/\D/g, '').replace(/^1/, '')
+    : undefined;
 
   const client = new SquareClient({
     token: env.SQUARE_ACCESS_TOKEN,
@@ -44,46 +53,44 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   });
 
   try {
-    // Search for existing customer by email
-    const searchResult = await client.customers.search({
-      query: {
-        filter: {
-          emailAddress: { exact: email },
-        },
-      },
+    // Search for existing customer by email (phone search is unreliable)
+    if (email) {
+      const searchResult = await client.customers.search({
+        query: { filter: { emailAddress: { exact: email } } },
+      });
+
+      if (searchResult.customers && searchResult.customers.length > 0) {
+        const existing = searchResult.customers[0];
+        const customerId = existing.id!;
+        const existingNote = existing.note || '';
+        const timestamp = new Date().toISOString().split('T')[0];
+        const updatedNote = existingNote
+          ? `${existingNote}\n\n[Website Contact Form — ${timestamp}]\n${message}`
+          : `[Website Contact Form — ${timestamp}]\n${message}`;
+
+        await client.customers.update({
+          customerId,
+          note: updatedNote,
+        });
+
+        return Response.json({ success: true, customerId });
+      }
+    }
+
+    // Create new customer (or phone-based submission)
+    const [givenName, ...familyParts] = name.split(' ');
+    const familyName = familyParts.join(' ') || undefined;
+
+    const createResult = await client.customers.create({
+      givenName,
+      familyName,
+      ...(email ? { emailAddress: email } : {}),
+      ...(normalizedPhone ? { phoneNumber: normalizedPhone } : {}),
+      referenceId: 'website-contact-form',
+      note: `[Website Contact Form]${smsConsent ? ' [SMS Consent: Yes]' : ''}\n${message}`,
     });
 
-    if (searchResult.customers && searchResult.customers.length > 0) {
-      // Customer exists — append the message as a note update
-      const existing = searchResult.customers[0];
-      const customerId = existing.id!;
-      const existingNote = existing.note || '';
-      const timestamp = new Date().toISOString().split('T')[0];
-      const updatedNote = existingNote
-        ? `${existingNote}\n\n[Website Contact Form — ${timestamp}]\n${message}`
-        : `[Website Contact Form — ${timestamp}]\n${message}`;
-
-      await client.customers.update({
-        customerId,
-        note: updatedNote,
-      });
-
-      return Response.json({ success: true, customerId });
-    } else {
-      // Create new customer
-      const [givenName, ...familyParts] = name.split(' ');
-      const familyName = familyParts.join(' ') || undefined;
-
-      const createResult = await client.customers.create({
-        givenName,
-        familyName,
-        emailAddress: email,
-        referenceId: 'website-contact-form',
-        note: `[Website Contact Form]\n${message}`,
-      });
-
-      return Response.json({ success: true, customerId: createResult.customer?.id });
-    }
+    return Response.json({ success: true, customerId: createResult.customer?.id });
   } catch (error: unknown) {
     console.error('Square API error:', error);
     return Response.json(

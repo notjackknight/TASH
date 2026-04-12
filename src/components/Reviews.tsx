@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { ArrowRight02Icon, StarIcon, MessageEdit01Icon } from 'hugeicons-react';
 import { CarouselDots } from './CarouselDots';
 
+const GOOGLE_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJSclHaFkbU4gRb_RRjHSwI18';
+
 type Review = {
   name: string;
   text: string;
@@ -142,14 +144,19 @@ function ReviewCard({ review }: { review: Review }) {
 
 function SeeAllCard() {
   return (
-    <button className="flex flex-col items-center justify-center bg-white border border-anchor/15 no-radius p-6 h-full hover:bg-canvas/40 transition-colors duration-300 gap-4">
+    <a
+      href={GOOGLE_REVIEW_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col items-center justify-center bg-white border border-anchor/15 no-radius p-6 h-full hover:bg-canvas/40 transition-colors duration-300 gap-4"
+    >
       <GoogleG className="w-10 h-10" />
       <span className="font-serif text-xl text-anchor">See all reviews</span>
       <span className="inline-flex items-center gap-2 uppercase tracking-[0.2em] text-[10px] font-semibold text-action">
         <span>View on Google</span>
         <ArrowRight02Icon size={14} strokeWidth={2} />
       </span>
-    </button>
+    </a>
   );
 }
 
@@ -175,19 +182,34 @@ export function Reviews() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-anchor/25 to-transparent" />
 
       <div className="relative w-full">
-        {/* Header */}
+        {/* Header — editorial style, no card */}
         <div className="px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-6 md:mb-8 flex justify-center">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-            className="inline-flex items-center gap-4 bg-white border border-anchor/20 shadow-[8px_8px_0px_rgba(92,40,40,0.10)] md:shadow-[12px_12px_0px_rgba(92,40,40,0.10)] px-6 py-4 md:px-8 md:py-5"
+            className="inline-flex items-center gap-4"
           >
-            <MessageEdit01Icon size={18} strokeWidth={1.5} className="text-action shrink-0" />
-            <h2 className="font-serif text-3xl md:text-4xl text-anchor whitespace-nowrap">
-              See what our <span className="italic font-light">clients say.</span>
+            <MessageEdit01Icon size={18} strokeWidth={1.5} className="text-action shrink-0 hidden md:block" />
+            <h2 className="font-serif text-5xl md:text-6xl text-anchor whitespace-nowrap">
+              <span className="md:hidden">Our <span className="italic">clients.</span></span>
+              <span className="hidden md:inline">What our <span className="italic">clients say.</span></span>
             </h2>
+          </motion.div>
+        </div>
+
+        {/* Mobile-only swipe hint */}
+        <div className="md:hidden mb-3 flex items-center justify-center gap-3 text-action">
+          <span className="uppercase tracking-[0.2em] text-[10px] font-semibold">
+            Swipe to explore
+          </span>
+          <motion.div
+            animate={{ x: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+            className="flex items-center"
+          >
+            <ArrowRight02Icon size={18} strokeWidth={1.75} />
           </motion.div>
         </div>
 
@@ -222,13 +244,16 @@ export function Reviews() {
 
         {/* CTA — Leave a review */}
         <div className="mt-4 md:mt-6 flex justify-center px-6">
-          <motion.button
+          <motion.a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             whileTap={{ scale: 0.97 }}
             className="no-radius bg-anchor text-white border-2 border-transparent px-10 py-4 md:px-10 md:py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
           >
             <span>Leave Us a Review</span>
             <ArrowRight02Icon size={14} strokeWidth={2} />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </section>

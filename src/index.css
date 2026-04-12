@@ -40,29 +40,6 @@
     scrollbar-width: none;
   }
 
-  /* ─── Editorial background patterns ──────────────────────────
-     Each pattern is a tileable SVG encoded as a CSS background-image.
-     Colors are embedded (olive green #334D12 / burgundy #5C2828) at
-     very low alpha so they read as a whispered texture, not decor.
-     Apply the utility to a section; set bg-canvas on the same element
-     for the paper tone underneath. */
-
-  /* Hairline arch motif — apothecary tilework feel.
-     Tile: 120×140. Stroke: olive green, visible but restrained. */
-  .pattern-arch {
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='140' viewBox='0 0 120 140'%3E%3Cg fill='none' stroke='%23334D12' stroke-opacity='0.32' stroke-width='1.1'%3E%3Cpath d='M20 130 L20 70 Q20 30 60 30 Q100 30 100 70 L100 130'/%3E%3Cline x1='20' y1='130' x2='100' y2='130'/%3E%3Ccircle cx='60' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 120px 140px;
-  }
-
-  /* Laurel sprig — botanical print feel.
-     Tile: 160×160. Two offset sprigs per tile for organic repeat. */
-  .pattern-sprig {
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23334D12' stroke-opacity='0.32' stroke-width='1.1' stroke-linecap='round'%3E%3Cg transform='translate(30 40) rotate(-12)'%3E%3Cline x1='0' y1='0' x2='0' y2='40'/%3E%3Cpath d='M0 6 Q-8 4 -10 -2'/%3E%3Cpath d='M0 12 Q8 10 10 4'/%3E%3Cpath d='M0 18 Q-8 16 -10 10'/%3E%3Cpath d='M0 24 Q8 22 10 16'/%3E%3Cpath d='M0 30 Q-8 28 -10 22'/%3E%3Cpath d='M0 36 Q8 34 10 28'/%3E%3C/g%3E%3Cg transform='translate(110 110) rotate(168)'%3E%3Cline x1='0' y1='0' x2='0' y2='40'/%3E%3Cpath d='M0 6 Q-8 4 -10 -2'/%3E%3Cpath d='M0 12 Q8 10 10 4'/%3E%3Cpath d='M0 18 Q-8 16 -10 10'/%3E%3Cpath d='M0 24 Q8 22 10 16'/%3E%3Cpath d='M0 30 Q-8 28 -10 22'/%3E%3Cpath d='M0 36 Q8 34 10 28'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 160px 160px;
-  }
-
   /* Fine grain — letterpress paper texture.
      SVG fractal noise at low opacity, burgundy-tinted. */
   .pattern-grain {

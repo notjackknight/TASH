@@ -1,0 +1,19 @@
+{
+  "name": "The Esthetic Haus",
+  "short_name": "Esthetic Haus",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#5C2828",
+  "background_color": "#D1C7B5",
+  "display": "standalone"
+}

@@ -6,6 +6,7 @@ coverage/
 *.log
 .env*
 !.env.example
+.dev.vars
 SQUARE_SETUP.md
 .claude/
 .wrangler/
@@ -14,4 +15,4 @@ SQUARE_SETUP.md
 Thumbs.db
 
 # Raw source assets (optimized copies are written into public/eh_public_assets/)
-eh_public_assets/
+eh_source_assets/

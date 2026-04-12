@@ -1,0 +1,28 @@
+export const business = {
+  name: 'The Esthetic Haus',
+  tagline: 'Where Beauty Comes Home',
+  url: 'https://www.esthetichausbynatasha.com',
+  address: {
+    street: '5698 West Gate City Blvd, Suite 116',
+    city: 'Greensboro',
+    state: 'NC',
+    zip: '27407',
+    full: '5698 West Gate City Blvd, Suite 116, Greensboro, NC 27407',
+  },
+  phone: '(914) 618-1809',
+  phoneRaw: '+19146181809',
+  email: 'theesthetichausllc@gmail.com',
+  instagram: 'https://www.instagram.com/theesthetichausbynatasha/',
+  googleReviews: 'https://search.google.com/local/writereview?placeid=ChIJSclHaFkbU4gRb_RRjHSwI18',
+  giftCards: 'https://app.squareup.com/gift/ML5QH1ZNJJAR5/order',
+  coordinates: { lat: 36.0313889, lng: -79.8788414 },
+  hours: [
+    { day: 'Monday', open: '8:00am', close: '4:00pm' },
+    { day: 'Tuesday', open: '8:00am', close: '3:00pm' },
+    { day: 'Wednesday', open: '9:00am', close: '6:00pm' },
+    { day: 'Thursday', open: '8:00am', close: '3:00pm' },
+    { day: 'Friday', open: '8:00am', close: '3:00pm' },
+    { day: 'Saturday', open: '9:00am', close: '3:00pm' },
+    { day: 'Sunday', open: null, close: null, note: "The Lord's Day" },
+  ] as const,
+} as const;

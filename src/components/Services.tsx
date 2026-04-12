@@ -1,4 +1,6 @@
-import { useMemo, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router';
 import { motion, AnimatePresence, LayoutGroup } from 'motion/react';
 import {
   ArrowRight02Icon,
@@ -52,12 +54,6 @@ const services: Service[] = [
     desc: 'A luxurious, customized skincare service designed to address individual needs through professional-grade treatments and deep relaxation. A balanced approach to skin health, suitable for all skin types.',
     price: '$100',
     category: 'Facials',
-  },
-  {
-    title: 'Classic Haus Fill',
-    desc: 'Must have 50% or more lashes on to be considered a fill.',
-    price: '$75',
-    category: 'Lashes',
   },
   {
     title: 'Brow Wax',
@@ -123,6 +119,12 @@ const services: Service[] = [
   },
 
   // ─── Lashes (popularity order) ───────────────────────────
+  {
+    title: 'Classic Haus Fill',
+    desc: 'Must have 50% or more lashes on to be considered a fill.',
+    price: '$75',
+    category: 'Lashes',
+  },
   {
     title: 'Haus Wispy Dream Fill',
     desc: 'Must have 50% or more lashes on to be considered a fill.',
@@ -280,17 +282,17 @@ const services: Service[] = [
     category: 'Waxing',
   },
 
-  // ─── Finishing Touches (popularity order) ────────────────
-  {
-    title: 'The Haus Spray Tan',
-    desc: 'A custom, natural-looking tan using premium Norvell solutions for even application and long-lasting results. Tailored to your skin tone for a flawless, sun-kissed glow.',
-    price: '$60',
-    category: 'Finishing',
-  },
+  // ─── Finishing Touches ───────────────────────────────────
   {
     title: 'Pearly White Haus Teeth Whitening',
     desc: 'A professional, appointment-based service designed to help you achieve a brighter, more confident smile. Fast, effective whitening tailored to your needs in a comfortable setting — three rounds for a flat fee, with all the same products you\u2019d find at a dental office.',
     price: '$200',
+    category: 'Finishing',
+  },
+  {
+    title: 'The Haus Spray Tan',
+    desc: 'A custom, natural-looking tan using premium Norvell solutions for even application and long-lasting results. Tailored to your skin tone for a flawless, sun-kissed glow.',
+    price: '$60',
     category: 'Finishing',
   },
   {
@@ -301,10 +303,26 @@ const services: Service[] = [
   },
 ];
 
+const categoryRoutes: Partial<Record<Exclude<Category, 'All'>, string>> = {
+  Facials: '/services/facials',
+  Lashes: '/services/lashes',
+  Brows: '/services/brows',
+  Advanced: '/services/microneedling',
+  Finishing: '/services/teeth-whitening',
+};
+
+const categoryLinkLabels: Partial<Record<Exclude<Category, 'All'>, string>> = {
+  Facials: 'Learn About Facials',
+  Lashes: 'Learn About Lashes',
+  Brows: 'Learn About Brows',
+  Advanced: 'Learn About Microneedling',
+  Finishing: 'Learn About Teeth Whitening',
+};
+
 const DESKTOP_PREVIEW = 3;
 const READ_MORE_THRESHOLD = 140;
 
-function ServiceCard({ service, plain = false }: { service: Service; plain?: boolean }) {
+function ServiceCard({ service, plain = false }: { key?: React.Key; service: Service; plain?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const isLong = service.desc.length > READ_MORE_THRESHOLD;
   const shortDesc = isLong
@@ -365,19 +383,16 @@ function ServiceCard({ service, plain = false }: { service: Service; plain?: boo
         <hr className="border-0 h-px bg-canvas group-hover:bg-action/30 transition-colors duration-300 ease-in-out mt-6 mb-0" />
 
         {/* Footer specs — Price | Select */}
-        <div className="flex items-stretch -mx-7 md:-mx-8">
+        <div className="grid grid-cols-2 items-stretch -mx-7 md:-mx-8">
           {/* Price — left */}
-          <div className="flex-1 flex items-center px-7 md:px-8 py-4">
+          <div className="flex items-center px-7 md:px-8 py-4">
             <span className="font-serif font-bold text-3xl md:text-[2rem] text-anchor">
               {service.price}
             </span>
           </div>
 
-          {/* Vertical divider */}
-          <div className="w-px bg-canvas group-hover:bg-action/30 transition-colors duration-300 ease-in-out" />
-
           {/* Select — right */}
-          <div className="flex-1 flex items-center justify-center px-7 md:px-8 py-4">
+          <div className="flex items-center justify-center px-7 md:px-8 py-4 border-l border-canvas group-hover:border-action/30 transition-colors duration-300 ease-in-out">
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={() => openBooking(service.title)}
@@ -394,10 +409,29 @@ function ServiceCard({ service, plain = false }: { service: Service; plain?: boo
 }
 
 export function Services() {
-  const [activeCategory, setActiveCategory] = useState<Category>('All');
+  const [searchParams] = useSearchParams();
+  const initialCategory = (() => {
+    const param = searchParams.get('category');
+    if (param && (categories as readonly string[]).includes(param)) return param as Category;
+    return 'All' as Category;
+  })();
+
+  const [activeCategory, setActiveCategory] = useState<Category>(initialCategory);
   const [showAll, setShowAll] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Sync with URL search param changes (e.g. navigating from a service page CTA)
+  useEffect(() => {
+    const param = searchParams.get('category');
+    if (param && (categories as readonly string[]).includes(param)) {
+      setActiveCategory(param as Category);
+      setShowAll(false);
+      if (carouselRef.current) {
+        carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+    }
+  }, [searchParams]);
 
   const filtered = useMemo(
     () =>
@@ -428,7 +462,7 @@ export function Services() {
   };
 
   return (
-    <section ref={sectionRef} id="services" className="py-16 md:py-20 bg-white relative overflow-hidden scroll-mt-24">
+    <section ref={sectionRef} id="services" className="py-10 md:py-14 bg-white relative overflow-hidden scroll-mt-24">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
         className="absolute inset-0 pointer-events-none bg-fixed"
@@ -440,34 +474,35 @@ export function Services() {
       />
       {/* Heavy white wash */}
       <div className="absolute inset-0 pointer-events-none bg-white/88" />
+      {/* Top gradient — fades to solid white at the top for text readability, pattern emerges below */}
+      <div className="absolute inset-x-0 top-0 h-[280px] md:h-[340px] pointer-events-none bg-gradient-to-b from-white via-white/95 to-transparent" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-anchor/25 to-transparent"></div>
 
-      {/* Header */}
-      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-10 md:mb-16">
+      {/* Header — editorial style, no card */}
+      <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-6 md:mb-10">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-          className="inline-block bg-white border border-anchor/20 shadow-[8px_8px_0px_rgba(92,40,40,0.10)] md:shadow-[12px_12px_0px_rgba(92,40,40,0.10)] px-6 py-6 md:px-10 md:py-8 max-w-full"
         >
-          <div className="flex items-center gap-3 mb-4 text-action">
+          <div className="flex items-center gap-3 mb-3 text-action">
             <SparklesIcon size={18} strokeWidth={1.5} />
             <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
               The Menu
             </span>
           </div>
-          <h2 className="font-serif text-4xl md:text-6xl text-anchor mb-6 whitespace-nowrap">
+          <h2 className="font-serif text-5xl md:text-6xl text-anchor mb-3 whitespace-nowrap">
             The Haus Services
           </h2>
           <p className="font-sans text-lg text-anchor/70 max-w-xl">
-            Curated treatments designed to restore, refine, and elevate your natural aesthetic.
+            Treatments designed to restore, refine, and elevate your natural aesthetic.
           </p>
         </motion.div>
 
         {/* Category filters */}
         <LayoutGroup>
-          <div className="mt-10 md:mt-12 flex flex-wrap gap-2 md:gap-3">
+          <div className="mt-6 md:mt-8 flex flex-wrap gap-2 md:gap-3">
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
               return (
@@ -567,8 +602,21 @@ export function Services() {
         count={filtered.length}
         resetKey={activeCategory}
         maxVisible={7}
-        className="relative md:hidden pt-2 pb-2"
+        className="relative md:hidden pt-2 pb-2 px-6"
       />
+
+      {/* Category page link — shown when a specific category is active */}
+      {activeCategory !== 'All' && categoryRoutes[activeCategory] && (
+        <div className="relative mt-6 md:mt-10 flex justify-center px-6">
+          <Link
+            to={categoryRoutes[activeCategory]!}
+            className="no-radius inline-flex items-center gap-3 bg-anchor text-white px-7 py-3.5 hover:bg-action transition-all duration-300 uppercase tracking-[0.2em] text-[11px] font-semibold group"
+          >
+            <span>{categoryLinkLabels[activeCategory] ?? `Explore ${activeCategory}`}</span>
+            <ArrowRight02Icon size={14} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

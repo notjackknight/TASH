@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
-import { ArrowDown01Icon } from 'hugeicons-react';
-import { ArrowRight } from 'lucide-react';
-import { openBooking } from '../hooks/useBooking';
+import { ArrowDown01Icon, ArrowRight02Icon, Call02Icon } from 'hugeicons-react';
+import { Link } from 'react-router';
 
 const HERO_IMAGE = '/eh_public_assets/hero/hero_asset.webp';
 
@@ -40,24 +39,31 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto items-stretch sm:items-center">
-            <motion.button
-              whileTap={{ scale: 0.96, backgroundColor: '#334D12', color: '#ffffff' }}
-              transition={{ duration: 0.2 }}
-              onClick={() => openBooking()}
-              className="group no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-10 py-5 uppercase tracking-[0.2em] text-sm font-bold hover:from-action hover:to-action hover:text-white transition-colors duration-300"
+            <a
+              href="#services"
+              className="group no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-10 py-5 uppercase tracking-[0.2em] text-sm font-bold hover:from-action hover:to-action hover:text-white active:scale-[0.96] transition-all duration-300 text-center"
             >
               <span className="flex items-center justify-center gap-3">
                 Book Now
-                <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                <ArrowRight02Icon size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </span>
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.96, backgroundColor: '#334D12', color: '#ffffff', borderColor: '#334D12' }}
-              transition={{ duration: 0.2 }}
-              className="no-radius border border-white text-white px-10 py-5 uppercase tracking-[0.2em] text-sm font-medium hover:bg-action hover:text-white hover:border-action transition-all duration-300"
+            </a>
+            {/* Desktop: About The Haus | Mobile: Call Us */}
+            <Link
+              to="/greensboro-med-spa"
+              className="hidden sm:block no-radius border border-white text-white px-10 py-5 uppercase tracking-[0.2em] text-sm font-medium hover:bg-action hover:text-white hover:border-action active:scale-[0.96] transition-all duration-300 text-center"
             >
-              Explore Treatments
-            </motion.button>
+              About The Haus
+            </Link>
+            <a
+              href="tel:9146181809"
+              className="sm:hidden no-radius border border-white text-white px-10 py-5 uppercase tracking-[0.2em] text-sm font-medium hover:bg-action hover:text-white hover:border-action active:scale-[0.96] transition-all duration-300 text-center"
+            >
+              <span className="flex items-center justify-center gap-3">
+                Call Us
+                <Call02Icon size={16} strokeWidth={2} />
+              </span>
+            </a>
           </div>
         </motion.div>
       </div>

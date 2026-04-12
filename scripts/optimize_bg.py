@@ -22,13 +22,22 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "eh_public_assets"
+SRC = ROOT / "eh_source_assets"
 DST = ROOT / "public" / "eh_public_assets"
 
 # Each job: (kind, source relative path, destination relative path)
 JOBS: list[tuple[str, str, str]] = [
-    ("tile", "backgrounds/tile_pattern.png", "backgrounds/tile_pattern.webp"),
-    ("tile", "backgrounds/packages_bg.png",  "backgrounds/packages_bg.webp"),
+    ("tile",  "backgrounds/tile_pattern.png",          "backgrounds/tile_pattern.webp"),
+    ("tile",  "backgrounds/packages_bg.png",           "backgrounds/packages_bg.webp"),
+    ("photo", "backgrounds/teeth_whitening_hero.jpg",  "backgrounds/teeth_whitening_hero.webp"),
+    ("photo", "backgrounds/facials_hero.jpg",          "backgrounds/facials_hero.webp"),
+    ("photo", "backgrounds/lashes_hero.jpg",           "backgrounds/lashes_hero.webp"),
+    ("photo", "backgrounds/microneedling_hero.jpg",    "backgrounds/microneedling_hero.webp"),
+    ("photo", "backgrounds/brows_hero.jpg",            "backgrounds/brows_hero.webp"),
+    ("photo", "Haus_Packages/HP_BG_New.jpg",           "Haus_Packages/HP_BG_New.webp"),
+    ("photo", "Haus_Packages/HP_BG_mobile.jpg",        "Haus_Packages/HP_BG_mobile.webp"),
+    ("photo", "Logo/EH_Logo.png",                      "Logo/EH_Logo.webp"),
+    ("photo", "backgrounds/greensboro_hero.png",       "backgrounds/greensboro_hero.webp"),
 ]
 
 PHOTO_MAX = 2400

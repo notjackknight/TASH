@@ -1,7 +1,9 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Calendar03Icon,
+  Call02Icon,
   Menu02Icon,
   Cancel01Icon,
   ArrowRight02Icon,
@@ -11,28 +13,36 @@ import {
   Tick02Icon,
   Award02Icon,
 } from 'hugeicons-react';
-import { openBooking } from '../hooks/useBooking';
+
 
 type ModalKey = 'affiliate' | 'refer' | null;
 
 type MenuItem = { label: string } & (
-  | { href: string }
+  | { hash: string }
+  | { to: string }
   | { modal: Exclude<ModalKey, null> }
 );
 
 const menuItems: MenuItem[] = [
-  { label: 'Services', href: '#services' },
-  { label: 'Packages', href: '#packages' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#about' },
-  { label: 'Gifts', href: '#gifts' },
+  { label: 'Services', hash: '#services' },
+  { label: 'Packages', hash: '#packages' },
+  { label: 'Gallery', hash: '#gallery' },
+  { label: 'About', to: '/greensboro-med-spa' },
+  { label: 'Gifts', hash: '#gifts' },
   { label: 'Cosmedix', modal: 'affiliate' },
   { label: 'Refer', modal: 'refer' },
 ];
 
+function resolveHash(hash: string, isHome: boolean): string {
+  return isHome ? hash : `/${hash}`;
+}
+
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modal, setModal] = useState<ModalKey>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/';
 
   // Close on Esc + lock body scroll when mobile menu open
   useEffect(() => {
@@ -62,15 +72,15 @@ export function Navigation() {
       <nav className="sticky top-0 z-50 w-full pt-safe bg-anchor border-b border-micro/10">
         <div className="w-full pl-4 pr-1 md:px-10 lg:px-16 xl:px-20 h-24 md:h-24 grid grid-cols-[auto_1fr_auto] items-center gap-2 md:gap-6">
           {/* LEFT — Logo */}
-          <a href="/" className="flex items-center" aria-label="The Esthetic Haus — Home">
+          <Link to="/" className="flex items-center" aria-label="The Esthetic Haus — Home">
             <img
-              src="/eh_public_assets/Logo/EH_Logo.png"
+              src="/eh_public_assets/Logo/EH_Logo.webp"
               alt="The Esthetic Haus"
               fetchPriority="high"
               decoding="async"
               className="h-14 md:h-16 lg:h-20 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           {/* CENTER — Section menu (desktop only) */}
           <ul className="hidden md:flex items-center justify-center gap-6 lg:gap-10">
@@ -82,11 +92,16 @@ export function Navigation() {
               );
               return (
                 <li key={item.label}>
-                  {'href' in item ? (
-                    <a href={item.href} className={linkClass}>
+                  {'hash' in item ? (
+                    <a href={resolveHash(item.hash, isHome)} className={linkClass}>
                       {item.label}
                       {underline}
                     </a>
+                  ) : 'to' in item ? (
+                    <Link to={item.to} className={linkClass}>
+                      {item.label}
+                      {underline}
+                    </Link>
                   ) : (
                     <button onClick={() => setModal(item.modal)} className={linkClass}>
                       {item.label}
@@ -99,7 +114,7 @@ export function Navigation() {
           </ul>
 
           {/* RIGHT — Account / actions */}
-          <div className="flex items-center justify-end gap-4 md:gap-5 text-white">
+          <div className="flex items-center justify-end gap-1 md:gap-5 text-white">
             {/* Desktop My Appointments (only when URL configured) + Book Now */}
             {import.meta.env.VITE_SQUARE_BOOKING_URL && (
               <>
@@ -116,29 +131,29 @@ export function Navigation() {
               </>
             )}
             <button
-              onClick={() => openBooking()}
-              className="hidden md:flex no-radius bg-action text-white px-5 py-2.5 hover:bg-white hover:text-action transition-colors duration-300 items-center gap-2 uppercase tracking-widest text-xs font-semibold"
+              onClick={() => navigate('/#services')}
+              className="hidden md:flex no-radius bg-gradient-to-b from-white to-[#d4cdc1] text-anchor px-5 py-4 hover:from-action hover:to-action hover:text-white transition-all duration-300 items-center gap-2 uppercase tracking-widest text-xs font-bold"
             >
               <span>Book Now</span>
               <ArrowRight02Icon size={14} strokeWidth={2} />
             </button>
 
-            {/* Mobile Book Now */}
-            <button
-              aria-label="Book Now"
-              onClick={() => openBooking()}
-              className="md:hidden p-2 hover:text-canvas transition-colors"
+            {/* Mobile Call */}
+            <a
+              href="tel:9146181809"
+              aria-label="Call us"
+              className="md:hidden p-1.5 hover:text-canvas transition-colors"
             >
-              <Calendar03Icon size={22} strokeWidth={1.5} />
-            </button>
+              <Call02Icon size={26} strokeWidth={1.5} />
+            </a>
 
             {/* Mobile hamburger — rightmost */}
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="md:hidden p-2 hover:text-canvas transition-colors"
+              className="md:hidden p-1.5 hover:text-canvas transition-colors"
             >
-              <Menu02Icon size={24} strokeWidth={1.5} />
+              <Menu02Icon size={28} strokeWidth={1.5} />
             </button>
           </div>
         </div>
@@ -192,14 +207,22 @@ export function Navigation() {
                         damping: 20,
                       }}
                     >
-                      {'href' in item ? (
+                      {'hash' in item ? (
                         <a
-                          href={item.href}
+                          href={resolveHash(item.hash, isHome)}
                           onClick={() => handleItemClick(item)}
                           className="group flex items-baseline justify-between py-4 border-b border-anchor/10"
                         >
                           {content}
                         </a>
+                      ) : 'to' in item ? (
+                        <Link
+                          to={item.to}
+                          onClick={() => handleItemClick(item)}
+                          className="group flex items-baseline justify-between py-4 border-b border-anchor/10"
+                        >
+                          {content}
+                        </Link>
                       ) : (
                         <button
                           onClick={() => handleItemClick(item)}
@@ -230,7 +253,14 @@ export function Navigation() {
               <button
                 onClick={() => {
                   setMenuOpen(false);
-                  openBooking();
+                  setTimeout(() => {
+                    if (location.pathname === '/') {
+                      const el = document.getElementById('services');
+                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                      navigate('/#services');
+                    }
+                  }, 300);
                 }}
                 className="no-radius bg-anchor text-white px-5 py-3 flex items-center gap-2 uppercase tracking-widest text-xs font-semibold hover:bg-action transition-colors"
               >
@@ -356,7 +386,7 @@ function AffiliateContent({ onClose }: { onClose: () => void }) {
           Powered by Cosmedix
         </span>
         <a
-          href="#"
+          href="https://www.cosmedix.com/?utm_campaign=eyJtZXJjaGlkIjoiMGY0YTRlZmQwYmQ2ZmY4ODQ3MDlkZDM0OGQ3M2Y1Y2IiLCJ1c2VyaWQiOiIzNzk3NiIsImJvYXJkaWQiOiIyNzgxMDIwIiwidHJhY2tpZCI6IjMwMjQ4ODAiLCJpc3Nob3B1cmwiOiJ0cnVlIn0%3D&utm_source=replika&utm_medium=replika&NULL&replika_key=0f4a4efd0bd6ff884709dd348d73f5cb&replika_param=eyJtZXJjaGlkIjoiMGY0YTRlZmQwYmQ2ZmY4ODQ3MDlkZDM0OGQ3M2Y1Y2IiLCJ1c2VyaWQiOiIzNzk3NiIsImJvYXJkaWQiOiIyNzgxMDIwIiwidHJhY2tpZCI6IjMwMjQ4ODAiLCJpc3Nob3B1cmwiOiJ0cnVlIn0%3D#PageName=shop-teh"
           target="_blank"
           rel="noopener noreferrer"
           onClick={onClose}
@@ -377,34 +407,34 @@ function ReferContent({ onClose }: { onClose: () => void }) {
       <div className="flex items-center gap-3 mb-3 text-action">
         <FavouriteIcon size={18} strokeWidth={1.5} />
         <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-          $50 for you · $50 for them
+          Referral Reward
         </span>
       </div>
       <h2 className="font-serif text-3xl md:text-5xl leading-[1.05] text-anchor mb-5">
-        Refer a
+        Glow together,
         <br />
-        <span className="italic font-light">Haus Bestie.</span>
+        <span className="italic font-light">the Haus way.</span>
       </h2>
       <p className="font-sans text-anchor/80 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">
-        Share the haus with someone you love. When they book their first treatment, you both receive $50 in credit toward your next visit. Effortless. Generous. On the haus.
+        When you refer a friend or family member, you both receive 15% off your next service of $50 or more. Because glowing is always better together.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10">
         {[
           {
             n: '01',
-            title: 'Get Your Link',
-            desc: 'Generate a unique referral link tied to your account.',
+            title: 'Spread the Word',
+            desc: 'Tell a friend or family member about The Esthetic Haus.',
           },
           {
             n: '02',
-            title: 'Share It',
-            desc: 'Send to a friend, post it, slip it into a text — your call.',
+            title: 'They Book',
+            desc: 'Your referral books their first treatment and mentions your name.',
           },
           {
             n: '03',
-            title: 'Both Glow',
-            desc: 'They book, you both receive $50 in haus credit.',
+            title: 'You Both Save',
+            desc: '15% off your next service of $50+ — for both of you.',
           },
         ].map((step) => (
           <div key={step.n} className="border-l-2 border-action pl-4">
@@ -417,13 +447,13 @@ function ReferContent({ onClose }: { onClose: () => void }) {
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-anchor/15">
         <span className="font-serif italic text-anchor/60 text-sm">
-          Sign in to generate your link
+          Just mention your referral at your next visit
         </span>
         <button
           onClick={onClose}
           className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
         >
-          <span>Get Started</span>
+          <span>Got It</span>
           <ArrowRight02Icon size={14} strokeWidth={2} />
         </button>
       </div>

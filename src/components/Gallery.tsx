@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -103,36 +104,49 @@ function ImageTile({
   onClick,
   eager = false,
 }: {
+  key?: React.Key;
   src: string;
   alt: string;
   span: string;
   onClick: () => void;
-  /** When true, the image loads immediately and skips the scroll-reveal animation.
-   *  Use for tiles that are visible in the initial viewport (above the fold). */
   eager?: boolean;
 }) {
-  const motionProps = eager
-    ? {}
-    : {
-        initial: { opacity: 0, scale: 0.96 },
-        whileInView: { opacity: 1, scale: 1 },
-        viewport: { once: true, margin: '-60px' },
-        transition: { type: 'spring' as const, stiffness: 90, damping: 22 },
-      };
+  if (eager) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`group relative overflow-hidden border border-micro/20 no-radius cursor-zoom-in bg-canvas ${span}`}
+        aria-label={`View ${alt}`}
+      >
+        <img
+          src={src}
+          alt={alt}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.8s] ease-out group-hover:scale-[1.06]"
+        />
+        <div className="absolute inset-0 bg-anchor/0 group-hover:bg-anchor/15 transition-colors duration-500 pointer-events-none"></div>
+      </button>
+    );
+  }
 
   return (
     <motion.button
       type="button"
       onClick={onClick}
-      {...motionProps}
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ type: 'spring', stiffness: 90, damping: 22 }}
       className={`group relative overflow-hidden border border-micro/20 no-radius cursor-zoom-in bg-canvas ${span}`}
       aria-label={`View ${alt}`}
     >
       <img
         src={src}
         alt={alt}
-        loading={eager ? 'eager' : 'lazy'}
-        fetchPriority={eager ? 'high' : undefined}
+        loading="lazy"
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.8s] ease-out group-hover:scale-[1.06]"
       />
@@ -152,7 +166,7 @@ function fullSrcFor(src: string): string {
   return src;
 }
 
-function PlaceholderTile({ label, span }: { label: string; span: string }) {
+function PlaceholderTile({ label, span }: { key?: React.Key; label: string; span: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
@@ -360,21 +374,26 @@ export function Gallery() {
       {/* Heavy white wash */}
       <div className="absolute inset-0 pointer-events-none bg-white/88" />
       <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
-        {/* Header */}
+        {/* Header — magazine spread layout */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-          className="mb-6 md:mb-16 text-center max-w-3xl mx-auto"
+          className="mb-6 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
         >
-          <div className="inline-flex items-center gap-3 mb-4 text-action">
-            <SparklesIcon size={18} strokeWidth={1.5} />
-            <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-              In Frames
-            </span>
+          <div>
+            <div className="flex items-center gap-3 mb-4 text-action">
+              <SparklesIcon size={18} strokeWidth={1.5} />
+              <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
+                In Frames
+              </span>
+            </div>
+            <h2 className="font-serif text-5xl md:text-6xl text-anchor">Gallery</h2>
           </div>
-          <h2 className="font-serif text-5xl md:text-6xl text-anchor">Gallery</h2>
+          <p className="font-sans text-base md:text-lg text-anchor/70 md:text-right max-w-[18rem] leading-relaxed md:mb-1">
+            A look inside our space and the real results we achieve.
+          </p>
         </motion.div>
 
         {/* DESKTOP — vertical mosaic (collapsible) */}

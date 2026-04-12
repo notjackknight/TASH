@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { CarouselDots } from './CarouselDots';
 import { motion, AnimatePresence } from 'motion/react';
@@ -130,6 +131,7 @@ function CompactCard({
   onOpen,
   variant = 'default',
 }: {
+  key?: React.Key;
   pkg: Package;
   onOpen: () => void;
   variant?: CardVariant;
@@ -390,44 +392,34 @@ export function Packages() {
       id="packages"
       className="relative py-12 md:py-16 lg:py-10 lg:min-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:justify-center bg-canvas border-t border-micro/20 scroll-mt-24 overflow-hidden"
     >
-      {/* Background image — mobile */}
+      {/* Background image */}
       <div
-        className="absolute inset-0 pointer-events-none lg:hidden"
+        className="absolute inset-0 pointer-events-none bg-cover bg-no-repeat bg-left-top lg:bg-center"
         style={{
-          backgroundImage: "url('/eh_public_assets/Haus_Packages/HP_BG_mobile.jpg')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage: "url('/eh_public_assets/Haus_Packages/HP_BG_New.webp')",
         }}
       />
-      {/* Background image — desktop */}
-      <div
-        className="absolute inset-0 pointer-events-none hidden lg:block"
-        style={{
-          backgroundImage: "url('/eh_public_assets/Haus_Packages/HP_BG_New.jpg')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
+      {/* Subtle readability wash behind title — mobile only */}
+      <div className="absolute inset-x-0 top-0 h-[280px] lg:hidden pointer-events-none bg-gradient-to-b from-white/80 via-white/50 to-transparent" />
 
       <div className="relative w-full">
-        {/* Header */}
-        <div className="px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-8 md:mb-10 lg:mb-6 text-center">
+
+        {/* Header — editorial style, no card */}
+        <div className="relative px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-8 md:mb-10 lg:mb-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-            className="inline-block bg-white border border-anchor/20 shadow-[8px_8px_0px_rgba(92,40,40,0.10)] md:shadow-[12px_12px_0px_rgba(92,40,40,0.10)] px-6 py-5 md:px-10 md:py-7 lg:px-10 lg:py-5 max-w-full"
+            className="relative"
           >
             <div className="inline-flex items-center gap-3 mb-3 text-action">
               <SparklesIcon size={18} strokeWidth={1.5} />
               <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-                Curated Protocols
+                Protocols
               </span>
             </div>
-            <h2 className="font-serif text-4xl md:text-6xl lg:text-5xl text-anchor mb-3 whitespace-nowrap">
+            <h2 className="font-serif text-5xl md:text-6xl text-anchor mb-3 whitespace-nowrap">
               The Haus Packages
             </h2>
             <p className="font-sans text-base md:text-lg lg:text-base text-anchor/70 max-w-2xl mx-auto">
@@ -457,7 +449,7 @@ export function Packages() {
         {/* MOBILE + TABLET — carousel (lg-down) */}
         <div className="relative lg:hidden">
           {/* Mobile-only swipe hint */}
-          <div className="md:hidden mb-4 flex items-center gap-3 text-white/80 pl-6">
+          <div className="md:hidden mb-4 flex items-center gap-3 text-anchor pl-6">
             <span className="uppercase tracking-[0.2em] text-[10px] font-semibold">
               Swipe to explore
             </span>

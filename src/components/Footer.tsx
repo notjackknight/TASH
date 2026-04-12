@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -21,8 +22,7 @@ const hours = [
   { day: 'Sunday', time: "The Lord's Day", italic: true },
 ];
 
-const directionsUrl =
-  'https://www.google.com/maps/dir/?api=1&destination=5698+West+Gate+City+Blvd+Suite+116+Greensboro+NC+27407';
+const directionsUrl = 'https://maps.app.goo.gl/SkDXxZym1fL87h6u8';
 
 export function Footer() {
   const contactInfo = (
@@ -38,6 +38,12 @@ export function Footer() {
           <br />
           Greensboro, NC 27407
         </div>
+        <a
+          href="/greensboro-med-spa"
+          className="inline-block mt-2 text-white/40 hover:text-white text-xs uppercase tracking-[0.18em] font-semibold transition-colors"
+        >
+          About The Haus
+        </a>
       </ContactTile>
       <ContactTile Icon={Call02Icon}>
         <a href="tel:9146181809" className="hover:text-white transition-colors">
@@ -83,41 +89,7 @@ export function Footer() {
     </div>
   );
 
-  const mapContent = (
-    <div className="w-full">
-      <div className="relative w-full h-[250px] lg:h-[200px] border border-white/30 no-radius overflow-hidden">
-        <iframe
-          title="The Esthetic Haus location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3226.549216765045!2d-79.8788414!3d36.0313889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88531a3809623233%3A0x631024e030e4b7b!2s5698%20W%20Gate%20City%20Blvd%20%23116%2C%20Greensboro%2C%20NC%2027407!5e0!3m2!1sen!2sus!4v1709668000000!5m2!1sen!2sus"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen={false}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-        {/* Overlay badge */}
-        <div className="absolute top-4 left-4 bg-white border border-anchor/20 px-4 py-2 flex items-center gap-2 shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
-          <Location01Icon size={14} strokeWidth={1.75} className="text-action" />
-          <span className="font-serif italic text-anchor text-sm">The Haus</span>
-        </div>
-      </div>
-      <a
-        href={directionsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-4 lg:mt-2 inline-flex items-center gap-2 group uppercase tracking-[0.22em] text-[10px] font-semibold text-white/70 hover:text-white transition-colors"
-      >
-        <Directions02Icon size={14} strokeWidth={1.5} />
-        <span>Get Directions</span>
-        <ArrowRight02Icon
-          size={12}
-          strokeWidth={2}
-          className="transition-transform group-hover:translate-x-1"
-        />
-      </a>
-    </div>
-  );
+  const mapContent = <DeferredMap />;
 
   const formContent = <ContactForm />;
 
@@ -192,17 +164,19 @@ export function Footer() {
             <p>&copy; {new Date().getFullYear()} The Esthetic Haus</p>
             <div className="flex items-center gap-6">
               <a
-                href="#"
+                href="https://www.instagram.com/theesthetichausbynatasha/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="hover:text-white transition-colors flex items-center gap-2"
               >
                 <InstagramIcon size={16} strokeWidth={1.5} />
                 <span>Instagram</span>
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#terms" className="hover:text-white transition-colors">
                 Terms
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#privacy" className="hover:text-white transition-colors">
                 Privacy
               </a>
             </div>
@@ -393,6 +367,45 @@ function ContactTile({
       <div className="font-serif text-white/90 text-lg md:text-xl lg:text-base leading-relaxed flex-1">
         {children}
       </div>
+    </div>
+  );
+}
+
+// ─── Deferred Google Maps iframe ─────────────────────────────
+// Renders the iframe only once the container scrolls into view.
+// This prevents the perpetual Chrome loading spinner caused by
+// the Maps embed continuously fetching sub-resources.
+const MAPS_SRC =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3227.101640694383!2d-79.8970306!3d36.0178113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88531b596847c949%3A0x5f23b0748c51f46f!2sThe%20Esthetic%20Haus!5e0!3m2!1sen!2sus!4v1776008617696!5m2!1sen!2sus';
+
+function DeferredMap() {
+  return (
+    <div className="w-full">
+      <div className="relative w-full h-[250px] lg:h-[200px] border border-white/30 no-radius overflow-hidden">
+        <iframe
+          title="The Esthetic Haus location"
+          src={MAPS_SRC}
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen={false}
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
+      <a
+        href={directionsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 lg:mt-2 inline-flex items-center gap-2 group uppercase tracking-[0.22em] text-[10px] font-semibold text-white/70 hover:text-white transition-colors"
+      >
+        <Directions02Icon size={14} strokeWidth={1.5} />
+        <span>Get Directions</span>
+        <ArrowRight02Icon
+          size={12}
+          strokeWidth={2}
+          className="transition-transform group-hover:translate-x-1"
+        />
+      </a>
     </div>
   );
 }
