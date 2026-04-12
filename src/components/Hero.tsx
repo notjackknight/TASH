@@ -35,7 +35,7 @@ export function Hero() {
             <span className="italic font-light">comes home.</span>
           </h1>
           <p className="font-sans text-lg md:text-xl text-white/90 max-w-md mb-12 leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-            Facials, lashes, brows, and the kind of quiet ritual you look forward to all week. A space made to feel a little like home.
+            Facials, lashes, brows, and the kind of quiet ritual you look forward to all week.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto items-stretch sm:items-center">
