@@ -485,17 +485,20 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ type: 'spring', stiffness: 80, damping: 20 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
         >
-          <div className="flex items-center gap-3 mb-3 text-action">
-            <SparklesIcon size={18} strokeWidth={1.5} />
-            <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-              The Menu
-            </span>
+          <div>
+            <div className="flex items-center gap-3 mb-4 text-action">
+              <SparklesIcon size={18} strokeWidth={1.5} />
+              <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
+                The Menu
+              </span>
+            </div>
+            <h2 className="font-serif text-5xl md:text-6xl text-anchor whitespace-nowrap">
+              The Haus Services
+            </h2>
           </div>
-          <h2 className="font-serif text-5xl md:text-6xl text-anchor mb-3 whitespace-nowrap">
-            The Haus Services
-          </h2>
-          <p className="font-sans text-lg text-anchor/70 max-w-xl">
+          <p className="font-sans text-base md:text-lg text-anchor/70 md:text-right max-w-[22rem] leading-relaxed md:mb-1">
             Treatments designed to restore, refine, and elevate your natural aesthetic.
           </p>
         </motion.div>

@@ -179,6 +179,8 @@ export function Reviews() {
         }}
       />
       <div className="absolute inset-0 pointer-events-none bg-white/88" />
+      {/* Top gradient — fades to solid white at the top for text readability, pattern emerges below */}
+      <div className="absolute inset-x-0 top-0 h-[280px] md:h-[340px] pointer-events-none bg-gradient-to-b from-white via-white/95 to-transparent" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-anchor/25 to-transparent" />
 
       <div className="relative w-full">

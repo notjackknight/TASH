@@ -401,28 +401,32 @@ export function Packages() {
       />
       {/* Subtle readability wash behind title — mobile only */}
       <div className="absolute inset-x-0 top-0 h-[280px] lg:hidden pointer-events-none bg-gradient-to-b from-white/80 via-white/50 to-transparent" />
+      {/* Top gradient — fades to white at the top for title readability, image emerges below */}
+      <div className="absolute inset-x-0 top-0 h-[280px] md:h-[340px] pointer-events-none bg-gradient-to-b from-white via-white/95 to-transparent" />
 
       <div className="relative w-full">
 
         {/* Header — editorial style, no card */}
-        <div className="relative px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-8 md:mb-10 lg:mb-6 text-center">
+        <div className="relative px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-8 md:mb-10 lg:mb-6">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-            className="relative"
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
           >
-            <div className="inline-flex items-center gap-3 mb-3 text-action">
-              <SparklesIcon size={18} strokeWidth={1.5} />
-              <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-                Protocols
-              </span>
+            <div>
+              <div className="flex items-center gap-3 mb-4 text-action">
+                <SparklesIcon size={18} strokeWidth={1.5} />
+                <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
+                  Protocols
+                </span>
+              </div>
+              <h2 className="font-serif text-5xl md:text-6xl text-anchor whitespace-nowrap">
+                The Haus Packages
+              </h2>
             </div>
-            <h2 className="font-serif text-5xl md:text-6xl text-anchor mb-3 whitespace-nowrap">
-              The Haus Packages
-            </h2>
-            <p className="font-sans text-base md:text-lg lg:text-base text-anchor/70 max-w-2xl mx-auto">
+            <p className="font-sans text-base md:text-lg text-anchor/70 md:text-right max-w-[22rem] leading-relaxed md:mb-1">
               A handful of intentional journeys, each shaped around a season of your life.
             </p>
           </motion.div>
