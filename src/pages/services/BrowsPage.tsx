@@ -104,7 +104,7 @@ export default function BrowsPage() {
                   Our brow services include precision waxing for clean shaping, Signature Brow Lamination for a lifted and fluffy look, Brow Code tinting for added depth, and hybrid brow stain for a fuller, longer-lasting result. Each treatment is customized to your face shape and desired style.
                 </p>
                 <p>
-                  Brow lamination restructures the brow hairs using a 2-step treatment, followed by a tint or stain and a brow wax — all included in one appointment. Results last 6-8 weeks, giving you effortlessly polished brows with zero daily effort.
+                  Brow lamination restructures the brow hairs using a 2-step treatment, followed by a tint or stain and a brow wax, all included in one appointment. Results last 6-8 weeks, giving you effortlessly polished brows with zero daily effort.
                 </p>
                 <p>
                   For waxing and lamination, avoid retinol and active exfoliants around the brow area for 5-7 days before your appointment. After your service, keep the area dry for 24 hours and avoid touching or applying makeup directly to the brows to let the treatment set properly.

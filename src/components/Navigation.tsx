@@ -344,7 +344,7 @@ function AffiliateContent({ onClose }: { onClose: () => void }) {
         <span className="italic font-light">Affiliate Portal.</span>
       </h2>
       <p className="font-sans text-anchor/80 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">
-        Cosmedix is our trusted clinical skincare line — pharmaceutical-grade formulations curated by The Esthetic Haus for at-home maintenance between treatments. Shop directly through our portal for member pricing and authentic product.
+        Cosmedix is our trusted clinical skincare line — clinical-grade formulations curated by The Esthetic Haus for at-home maintenance between treatments. Shop directly through our portal for member pricing and authentic product.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10">
@@ -352,7 +352,7 @@ function AffiliateContent({ onClose }: { onClose: () => void }) {
           {
             Icon: Award02Icon,
             title: 'Clinical Grade',
-            desc: 'Pharmaceutical-grade formulations selected for results, not marketing.',
+            desc: 'Clinical-grade formulations selected for results, not marketing.',
           },
           {
             Icon: Tick02Icon,

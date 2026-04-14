@@ -6,7 +6,7 @@ import { Breadcrumb } from '../../components/Breadcrumb';
 import { useNavigate } from 'react-router';
 
 const faqs = [
-  { q: 'How long do lash extensions last?', a: 'A full set typically lasts 3-4 weeks before a fill is needed. With proper aftercare — avoiding oil-based products and excessive rubbing — you can extend the life of your set.' },
+  { q: 'How long do lash extensions last?', a: 'A full set typically lasts 2-3 weeks before a fill is needed. With proper aftercare, such as avoiding oil-based products and excessive rubbing, you can extend the life of your set.' },
   { q: 'Will extensions damage my natural lashes?', a: 'Not when applied correctly. Our lash artists use proper isolation techniques and appropriate lash weights to protect the health and integrity of your natural lashes.' },
   { q: 'What\u2019s the difference between a lash lift and extensions?', a: 'A lash lift curls and lifts your natural lashes for a wide-eyed look without added material. Extensions add individual lashes for extra length, volume, and fullness. Both are great options depending on your desired look.' },
 ];
@@ -101,10 +101,10 @@ export default function LashesPage() {
               </h2>
               <div className="font-sans text-sm md:text-base text-anchor/70 leading-relaxed space-y-4">
                 <p>
-                  We offer a full range of lash services — from classic and wispy full sets to volume extensions, lash lifts, tinting, and Korean lash lifts. Whether you want a subtle everyday look or bold, dramatic lashes, every set is customized to your eye shape and personal style.
+                  We offer a full range of lash services, from classic and wispy full sets to volume extensions, lash lifts, tinting, and Korean lash lifts. Whether you want a subtle everyday look or bold, dramatic lashes, every set is customized to your eye shape and personal style.
                 </p>
                 <p>
-                  Full sets take approximately 1.5-2.5 hours depending on the style, and fills are recommended every 2-3 weeks to maintain fullness. You must have at least 50% of your lashes remaining to qualify for a fill — otherwise a new full set is recommended.
+                  Full sets take approximately 1.5-2.5 hours depending on the style, and fills are recommended every 2-3 weeks to maintain fullness. You must have at least 50% of your lashes remaining to qualify for a fill. Otherwise a new full set is recommended.
                 </p>
                 <p>
                   For the best retention, arrive with clean, makeup-free lashes. Avoid oil-based products around your eyes, and skip mascara on your extensions. Brush them gently each morning with a clean spoolie to keep them looking fresh between appointments.

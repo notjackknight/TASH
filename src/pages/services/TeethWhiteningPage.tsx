@@ -8,7 +8,7 @@ import { openBooking } from '../../hooks/useBooking';
 const faqs = [
   { q: 'Is teeth whitening painful?', a: 'Most clients experience no discomfort. If you have sensitivity, let us know and we\u2019ll adjust the treatment to ensure your comfort.' },
   { q: 'How long do results last?', a: 'Results typically last 3-6 months depending on dietary habits and oral care. Avoiding dark beverages and tobacco helps maintain your brighter smile.' },
-  { q: 'Is this the same as what dentists use?', a: 'Yes, we use the same professional-grade whitening products found in dental offices \u2014 at a fraction of the cost and in a comfortable, spa-like environment.' },
+  { q: 'What kind of whitening products do you use?', a: 'We use professional-grade whitening products designed to deliver fast, effective results in a comfortable, spa-like environment at a fraction of the cost of other whitening options.' },
 ];
 
 function FAQItem({ question, answer }: { key?: React.Key; question: string; answer: string }) {
@@ -39,7 +39,7 @@ export default function TeethWhiteningPage() {
     <>
       <SEOHead
         title="Professional Teeth Whitening in Greensboro, NC | $200 | The Esthetic Haus"
-        description="Professional teeth whitening in Greensboro, NC. Three rounds for $200 — same products as a dental office. Fast, effective results at The Esthetic Haus."
+        description="Professional teeth whitening in Greensboro, NC. Three rounds for $200 using professional-grade whitening products. Fast, effective results at The Esthetic Haus."
         path="/services/teeth-whitening"
       />
 
@@ -70,7 +70,7 @@ export default function TeethWhiteningPage() {
               Professional Teeth<br />Whitening{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              Get a brighter, more confident smile with professional teeth whitening at The Esthetic Haus. Our service uses the same professional-grade products you'd find at a dental office — three consecutive rounds in one comfortable appointment, at a fraction of the cost.
+              Get a brighter, more confident smile with professional teeth whitening at The Esthetic Haus. Our service uses professional-grade whitening products across three consecutive rounds in one comfortable appointment, at a fraction of the cost of other whitening options.
             </p>
           </div>
         </div>
@@ -105,10 +105,10 @@ export default function TeethWhiteningPage() {
               </h2>
               <div className="font-sans text-sm md:text-base text-anchor/70 leading-relaxed space-y-4">
                 <p>
-                  For a flat fee of $200, you receive three consecutive rounds of clinical-grade whitening gel in a single appointment. Each round is approximately 15 minutes, with a total treatment time of about 60-75 minutes. There are no hidden fees — your price covers the complete treatment from start to finish.
+                  For a flat fee of $200, you receive three consecutive rounds of professional-grade whitening gel in a single appointment. Each round is approximately 15 minutes, with a total treatment time of about 60-75 minutes. There are no hidden fees, and your price covers the complete treatment from start to finish.
                 </p>
                 <p>
-                  Unlike over-the-counter strips, professional whitening delivers even, controlled results supervised by a trained professional. The application is tailored to your sensitivity level in a comfortable, spa-like setting — faster and more dramatic results than anything you'd get at home.
+                  Unlike over-the-counter strips, professional whitening delivers even, controlled results supervised by a trained professional. The application is tailored to your sensitivity level in a comfortable, spa-like setting, producing faster and more dramatic results than anything you'd get at home.
                 </p>
                 <p>
                   For best results, avoid dark beverages (coffee, red wine, tea), deeply pigmented foods, and tobacco for 24-48 hours after treatment. Your teeth are most porous immediately after whitening, so the first 48 hours are critical for maintaining your results.

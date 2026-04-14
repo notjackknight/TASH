@@ -26,7 +26,7 @@ export default function GreensboroMedSpaPage() {
   return (
     <>
       <SEOHead
-        title="About The Esthetic Haus | Med Spa in Greensboro, NC"
+        title="About The Esthetic Haus | Skincare Studio in Greensboro, NC"
         description="The Esthetic Haus by Natasha is a licensed esthetician studio in Greensboro, NC specializing in customized facials, lash extensions, brow treatments, microneedling, and professional skincare. Book your appointment today."
         path="/greensboro-med-spa"
       />
@@ -54,7 +54,7 @@ export default function GreensboroMedSpaPage() {
                 <span className="uppercase tracking-[0.25em] text-[11px] font-semibold text-white/80">Greensboro, NC</span>
               </div>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] mb-8 drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
-                A Premier Medical Spa<br /><span className="italic font-light">in Greensboro, NC</span>
+                A Premier Skincare Studio<br /><span className="italic font-light">in Greensboro, NC</span>
               </h1>
               <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
                 A licensed esthetician studio in the heart of Greensboro, where professional skincare meets the warmth and comfort of home.
@@ -92,7 +92,7 @@ export default function GreensboroMedSpaPage() {
 
                 <div className="font-sans text-sm md:text-base text-anchor/70 leading-relaxed space-y-5">
                   <p>
-                    The Esthetic Haus by Natasha is a licensed esthetician studio in Greensboro, NC, built on the belief that skincare should be personal, intentional, and rooted in education. Located along the Gate City Blvd corridor, The Haus specializes in customized facials, chemical peels, dermaplaning, microneedling, lash extensions, brow treatments, and professional skincare using pharmaceutical-grade Cosmedix formulations. Every treatment is tailored to your unique skin, your concerns, and your goals. There are no cookie-cutter protocols here.
+                    The Esthetic Haus by Natasha is a licensed esthetician studio in Greensboro, NC, built on the belief that skincare should be personal, intentional, and rooted in education. Located along the Gate City Blvd corridor, The Haus specializes in customized facials, chemical peels, dermaplaning, microneedling, lash extensions, brow treatments, and professional skincare using clinical-grade Cosmedix formulations. Every treatment is tailored to your unique skin, your concerns, and your goals. There are no cookie-cutter protocols here.
                   </p>
                   <p>
                     Whether you're addressing acne, hyperpigmentation, signs of aging, or simply investing in the kind of self-care that makes you feel like yourself again, Natasha takes the time to understand your skin and build a treatment plan that actually works. Skin health education is at the core of everything we do, because the best results happen when you understand your skin, not just when you treat it.

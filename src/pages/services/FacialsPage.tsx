@@ -6,9 +6,9 @@ import { Breadcrumb } from '../../components/Breadcrumb';
 import { useNavigate } from 'react-router';
 
 const faqs = [
-  { q: 'How do I know which facial is right for me?', a: 'Every facial begins with a thorough skin analysis. Your esthetician will assess your skin type, concerns, and goals to recommend the best treatment for you — no guesswork involved.' },
+  { q: 'How do I know which facial is right for me?', a: 'Every facial begins with a thorough skin analysis. Your esthetician will assess your skin type, concerns, and goals to recommend the best treatment for you, with no guesswork involved.' },
   { q: 'How often should I get a facial?', a: 'For most clients, every 4-6 weeks is ideal to maintain results and support your skin\u2019s natural renewal cycle. Your esthetician may recommend a different cadence based on your specific treatment plan.' },
-  { q: 'What products do you use?', a: 'We use pharmaceutical-grade Cosmedix formulations — clinically proven, chirally correct ingredients that deliver real results without harsh chemicals or irritation.' },
+  { q: 'What products do you use?', a: 'We use clinical-grade Cosmedix formulations. They are clinically proven, chirally correct ingredients that deliver real results without harsh chemicals or irritation.' },
 ];
 
 function FAQItem({ question, answer }: { key?: React.Key; question: string; answer: string }) {
@@ -40,7 +40,7 @@ export default function FacialsPage() {
     <>
       <SEOHead
         title="Facials in Greensboro, NC | The Esthetic Haus"
-        description="Professional facials in Greensboro, NC — from hydrafacials and dermaplaning to acne treatments and anti-aging protocols. Customized skincare at The Esthetic Haus. Book today."
+        description="Professional facials in Greensboro, NC, from hydrating facials and dermaplaning to acne treatments and anti-aging protocols. Customized skincare at The Esthetic Haus. Book today."
         path="/services/facials"
       />
 
@@ -69,7 +69,7 @@ export default function FacialsPage() {
               Professional Facials{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              Every facial at The Esthetic Haus begins with a thorough skin analysis and is customized using pharmaceutical-grade Cosmedix formulations. Whether you need deep hydration, brightening, acne control, or anti-aging — we tailor the treatment to you.
+              Every facial at The Esthetic Haus begins with a thorough skin analysis and is customized using clinical-grade Cosmedix formulations. Whether you need deep hydration, brightening, acne control, or anti-aging, we tailor the treatment to you.
             </p>
           </div>
         </div>
@@ -101,10 +101,10 @@ export default function FacialsPage() {
               </h2>
               <div className="font-sans text-sm md:text-base text-anchor/70 leading-relaxed space-y-4">
                 <p>
-                  Our facial menu ranges from express treatments to advanced protocols — including hydrafacials, dermaplaning, brightening peels, acne detox facials, and anti-aging treatments. Each service is designed to address specific skin concerns with clinical-grade products and professional techniques.
+                  Our facial menu ranges from express treatments to advanced protocols, including hydrating facials, dermaplaning, brightening peels, acne detox facials, and anti-aging treatments. Each service is designed to address specific skin concerns with clinical-grade products and professional techniques.
                 </p>
                 <p>
-                  All facials include a double cleanse, skin analysis, and customized treatment plan. Depending on your service, you may also receive extractions, a mask, LED therapy, or hydrogen-oxygen infusion. We use Cosmedix products exclusively — pharmaceutical-grade formulations that are chirally correct for maximum absorption and results.
+                  All facials include a double cleanse, skin analysis, and customized treatment plan. Depending on your service, you may also receive extractions, a mask, LED therapy, or hydrogen-oxygen infusion. We use Cosmedix products exclusively. These clinical-grade formulations are chirally correct for maximum absorption and results.
                 </p>
                 <p>
                   For best results, avoid retinol and active exfoliants for 24-48 hours before your appointment. After your facial, your esthetician will recommend a home care routine to extend and maintain your results between visits.

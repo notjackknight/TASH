@@ -39,8 +39,8 @@ export default function MicroneedlingPage() {
   return (
     <>
       <SEOHead
-        title="Microneedling in Greensboro, NC | $250 | The Esthetic Haus"
-        description="Professional microneedling treatment in Greensboro, NC. Stimulates collagen production, reduces fine lines, and improves skin texture. $250 per session at The Esthetic Haus."
+        title="Microneedling in Greensboro, NC | The Esthetic Haus"
+        description="Professional microneedling treatment in Greensboro, NC. Stimulates collagen production, reduces fine lines, and improves skin texture at The Esthetic Haus."
         path="/services/microneedling"
       />
 
@@ -69,7 +69,7 @@ export default function MicroneedlingPage() {
               Microneedling{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              Microneedling is one of the most effective non-invasive treatments for improving skin texture, reducing fine lines, and stimulating your skin's natural collagen production. At The Esthetic Haus, we use professional-grade technology to deliver visible results with minimal downtime.
+              Microneedling is one of the most effective minimally invasive treatments for improving skin texture, reducing fine lines, and stimulating your skin's natural collagen production. At The Esthetic Haus, we use professional-grade technology to deliver visible results with minimal downtime.
             </p>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function MicroneedlingPage() {
               </h2>
               <div className="font-sans text-sm md:text-base text-anchor/70 leading-relaxed space-y-4">
                 <p>
-                  Also known as collagen induction therapy, microneedling uses fine, sterile needles to create controlled micro-injuries in the skin's surface. This triggers your body's natural healing process, stimulating the production of collagen and elastin — the proteins responsible for firm, smooth, and youthful-looking skin.
+                  Also known as collagen induction therapy, microneedling uses fine, sterile needles to create controlled micro-injuries in the skin's surface. This triggers your body's natural healing process, stimulating the production of collagen and elastin, the proteins responsible for firm, smooth, and youthful-looking skin.
                 </p>
                 <p>
                   Benefits include reduced fine lines and wrinkles, improved texture and tone, minimized pore appearance, faded acne scars and hyperpigmentation, and enhanced product absorption. Most clients see noticeable improvement after 3-4 sessions spaced 4-6 weeks apart.
