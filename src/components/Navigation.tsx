@@ -405,9 +405,7 @@ function ReferContent({ onClose }: { onClose: () => void }) {
         </span>
       </div>
       <h2 className="font-serif text-3xl md:text-5xl leading-[1.05] text-anchor mb-5">
-        Glow together,
-        <br />
-        <span className="italic font-light">the Haus way.</span>
+        Refer a <span className="italic font-light">Haus Bestie.</span>
       </h2>
       <p className="font-sans text-anchor/80 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">
         When you refer a friend or family member, you both receive 15% off your next service of $50 or more. Because glowing is always better together.
