@@ -31,7 +31,7 @@ export function GiftCards() {
               <span className="italic font-light">Gift of Haus.</span>
             </h2>
             <p className="font-sans text-anchor/80 text-sm md:text-lg mb-6 md:mb-10 max-w-md leading-relaxed">
-              Digital gift cards for every service and curated skincare product. Choose any value and send it instantly.
+              Digital gift cards for every service. Choose any value and send it instantly.
             </p>
             <motion.a
               href={GIFT_CARD_URL}
