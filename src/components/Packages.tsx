@@ -390,7 +390,7 @@ export function Packages() {
   return (
     <section
       id="packages"
-      className="relative py-12 md:py-16 lg:py-10 lg:min-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:justify-center bg-canvas border-t border-micro/20 scroll-mt-24 overflow-hidden"
+      className="relative py-5 md:py-10 lg:min-h-[calc(100vh-6rem)] lg:flex lg:flex-col lg:justify-center bg-canvas border-t border-micro/20 scroll-mt-24 overflow-hidden"
     >
       {/* Background image */}
       <div
@@ -416,12 +416,6 @@ export function Packages() {
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
           >
             <div>
-              <div className="flex items-center gap-3 mb-4 text-action">
-                <SparklesIcon size={18} strokeWidth={1.5} />
-                <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-                  Protocols
-                </span>
-              </div>
               <h2 className="font-serif text-5xl md:text-6xl text-anchor whitespace-nowrap">
                 The Haus Packages
               </h2>

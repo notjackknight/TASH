@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Image02Icon,
-  SparklesIcon,
   ArrowRight02Icon,
   ArrowLeft02Icon,
   ArrowDown01Icon,
@@ -361,7 +360,7 @@ export function Gallery() {
     setOpenIndex((i) => (i === null ? null : (i + 1) % galleryImages.length));
 
   return (
-    <section ref={sectionRef} id="gallery" className="relative py-10 md:py-20 lg:py-12 bg-white border-t border-micro/20 scroll-mt-24 overflow-hidden">
+    <section ref={sectionRef} id="gallery" className="relative py-5 md:py-10 bg-white border-t border-micro/20 scroll-mt-24 overflow-hidden">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
         className="absolute inset-0 pointer-events-none bg-scroll lg:bg-fixed"
@@ -382,15 +381,9 @@ export function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-          className="mb-6 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
+          className="mb-6 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
         >
           <div>
-            <div className="flex items-center gap-3 mb-4 text-action">
-              <SparklesIcon size={18} strokeWidth={1.5} />
-              <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-                In Frames
-              </span>
-            </div>
             <h2 className="font-serif text-5xl md:text-6xl text-anchor">Gallery</h2>
           </div>
           <p className="font-sans text-base md:text-lg text-anchor/70 md:text-right max-w-[18rem] leading-relaxed md:mb-1">

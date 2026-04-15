@@ -167,7 +167,7 @@ export function Reviews() {
   return (
     <section
       id="reviews"
-      className="py-10 md:py-12 lg:py-12 bg-white relative overflow-hidden scroll-mt-24"
+      className="py-5 md:py-10 bg-white relative overflow-hidden scroll-mt-24"
     >
       {/* Tiled parallax background — matches Services & Gallery */}
       <div
@@ -185,7 +185,7 @@ export function Reviews() {
 
       <div className="relative w-full">
         {/* Header — editorial style, no card */}
-        <div className="px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-6 md:mb-8 flex justify-center">
+        <div className="px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-6 md:mb-10 flex justify-center">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}

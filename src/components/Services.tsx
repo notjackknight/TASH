@@ -462,7 +462,7 @@ export function Services() {
   };
 
   return (
-    <section ref={sectionRef} id="services" className="py-10 md:py-14 bg-white relative overflow-hidden scroll-mt-24">
+    <section ref={sectionRef} id="services" className="py-5 md:py-10 bg-white relative overflow-hidden scroll-mt-24">
       {/* Seamless tiled background — fixed attachment creates parallax as the section scrolls past */}
       <div
         className="absolute inset-0 pointer-events-none bg-scroll lg:bg-fixed"
@@ -488,12 +488,6 @@ export function Services() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-0"
         >
           <div>
-            <div className="flex items-center gap-3 mb-4 text-action">
-              <SparklesIcon size={18} strokeWidth={1.5} />
-              <span className="uppercase tracking-[0.25em] text-[11px] font-semibold">
-                The Menu
-              </span>
-            </div>
             <h2 className="font-serif text-5xl md:text-6xl text-anchor whitespace-nowrap">
               The Haus Services
             </h2>
