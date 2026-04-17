@@ -1,7 +1,7 @@
 export const business = {
   name: 'The Esthetic Haus',
   tagline: 'Where Beauty Comes Home',
-  url: 'https://www.esthetichausbynatasha.com',
+  url: 'https://www.esthetic.haus',
   address: {
     street: '5698 West Gate City Blvd, Suite 116',
     city: 'Greensboro',
