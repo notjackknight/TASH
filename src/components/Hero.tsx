@@ -30,7 +30,7 @@ export function Hero() {
           transition={{ type: 'spring', stiffness: 80, damping: 20 }}
           className="z-10 text-white text-center lg:text-left flex flex-col items-center lg:items-start w-full lg:max-w-2xl xl:max-w-3xl"
         >
-          <h1 className="font-serif text-6xl md:text-7xl lg:text-[6.75rem] leading-[0.9] mb-8 drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
+          <h1 className="font-serif text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.9] mb-8 drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
             Where beauty <br />
             <span className="italic font-light">comes home.</span>
           </h1>
