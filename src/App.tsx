@@ -6,6 +6,7 @@
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
 import { Packages } from './components/Packages';
+import { ShopStrip } from './components/ShopStrip';
 import { Gallery } from './components/Gallery';
 import { GiftCards } from './components/ECommerce';
 import { About } from './components/About';
@@ -17,6 +18,7 @@ export default function App() {
       <Hero />
       <Services />
       <Packages />
+      <ShopStrip />
       <Gallery />
       <About />
       <Reviews />

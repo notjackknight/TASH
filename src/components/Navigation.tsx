@@ -20,12 +20,14 @@ type ModalKey = 'affiliate' | 'refer' | null;
 type MenuItem = { label: string } & (
   | { hash: string }
   | { to: string }
+  | { external: string }
   | { modal: Exclude<ModalKey, null> }
 );
 
 const menuItems: MenuItem[] = [
   { label: 'Services', hash: '#services' },
   { label: 'Packages', hash: '#packages' },
+  { label: 'Shop', external: 'https://theesthetichaus.shop/' },
   { label: 'Gallery', hash: '#gallery' },
   { label: 'About', to: '/greensboro-med-spa' },
   { label: 'Gifts', hash: '#gifts' },
@@ -102,6 +104,17 @@ export function Navigation() {
                       {item.label}
                       {underline}
                     </Link>
+                  ) : 'external' in item ? (
+                    <a
+                      href={item.external}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${linkClass} inline-flex items-center gap-1.5`}
+                    >
+                      {item.label}
+                      <ArrowUpRight01Icon size={11} strokeWidth={2} />
+                      {underline}
+                    </a>
                   ) : (
                     <button onClick={() => setModal(item.modal)} className={linkClass}>
                       {item.label}
@@ -219,6 +232,16 @@ export function Navigation() {
                         >
                           {content}
                         </Link>
+                      ) : 'external' in item ? (
+                        <a
+                          href={item.external}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => handleItemClick(item)}
+                          className="group flex items-baseline justify-between py-4 border-b border-anchor/10"
+                        >
+                          {content}
+                        </a>
                       ) : (
                         <button
                           onClick={() => handleItemClick(item)}
