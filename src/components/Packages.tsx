@@ -11,8 +11,17 @@ import {
   SparklesIcon,
   Tick02Icon,
   Cancel01Icon,
+  EyeIcon,
 } from 'hugeicons-react';
 const BOOKING_BASE = 'https://book.squareup.com/appointments/lu0cj345hv4hr2/location/LVZVXGQCTDSJM/services';
+
+type PackageOption = {
+  id: string;
+  squareItemId: string;
+  title: string;
+  price: string;
+  description: string;
+};
 
 type Package = {
   id: string;
@@ -23,10 +32,12 @@ type Package = {
   price: string;
   Icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
   image?: string;
+  imageFit?: 'cover' | 'contain'; // default 'cover'; 'contain' shows full image with letterboxing
   description: string;
   includes?: string[];
   highlights?: string[];
   upgrades?: string[];
+  options?: PackageOption[]; // When present, modal renders an option picker instead of a single Book button
 };
 
 const packages: Package[] = [
@@ -104,6 +115,36 @@ const packages: Package[] = [
     description:
       'A comprehensive, results-focused skin transformation program designed to target active acne, congestion, and post-blemish marking at the source. This intensive series includes 10 corrective acne facials, strategically scheduled to restore balance, reduce inflammation, and support clearer, healthier-looking skin. Your plan also features progressive Cosmedix molecular peels to refine texture, improve tone, and accelerate cellular renewal, along with deeply nourishing hydration masks to maintain skin strength and barrier health throughout your journey. To support your results at home, you\u2019ll receive one complimentary Cosmedix retail product — on the haus — personally selected to align with your target skin goals.',
   },
+  {
+    id: 'brow-lammy-combos',
+    squareItemId: '',
+    title: 'The Haus Signature Brow + Lash Package',
+    bestFor: 'Lashes + Brows',
+    price: '$195 / $205',
+    Icon: EyeIcon,
+    image: '/eh_public_assets/Haus_Packages/Brow_Lammy_Combos.webp',
+    imageFit: 'contain',
+    description:
+      'Two signature pairings that bring your brows and lashes into perfect balance — choose the combination that fits your look.',
+    options: [
+      {
+        id: 'signature-lash-lift-brow-lammy',
+        squareItemId: 'EAIL3XNIS4JOPGBZPJTKS437',
+        title: 'Signature Lash Lift + Brow Lammy',
+        price: '$195',
+        description:
+          'Brow lamination paired with our Signature Lash Lift to enhance your natural features with soft, long-lasting results.',
+      },
+      {
+        id: 'signature-brow-lammy-korean-lash-lift',
+        squareItemId: 'MMGFKYXLJFNHG5SV4OPV6C3X',
+        title: 'Signature Brow Lammy + Korean Lash Lift',
+        price: '$205',
+        description:
+          'A gentle, glossy lash lift paired with brow lamination for a clean, lifted, "always done" look.',
+      },
+    ],
+  },
 ];
 
 function PlaceholderImage({ Icon, label }: { Icon: Package['Icon']; label: string }) {
@@ -166,20 +207,28 @@ function CompactCard({
       className="group relative w-full text-left flex flex-col bg-white no-radius overflow-hidden focus:outline-none focus-visible:outline-2 focus-visible:outline-anchor focus-visible:outline-offset-2"
     >
       {/* Image */}
-      <div className={`relative ${imageClass} w-full overflow-hidden border-b border-micro/15 bg-canvas`}>
+      <div
+        className={`relative ${imageClass} w-full overflow-hidden border-b border-micro/15 ${
+          pkg.imageFit === 'contain' ? 'bg-white' : 'bg-canvas'
+        }`}
+      >
         {pkg.image ? (
           <img
             src={pkg.image}
             alt={pkg.title}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+            className={`absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.08] ${
+              pkg.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+            }`}
           />
         ) : (
           <PlaceholderImage Icon={Icon} label={pkg.bestFor} />
         )}
-        {/* Soft vignette that deepens on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-anchor/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        {/* Soft vignette that deepens on hover — only over photographic 'cover' images */}
+        {pkg.imageFit !== 'contain' && (
+          <div className="absolute inset-0 bg-gradient-to-t from-anchor/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        )}
         <div className="absolute top-4 left-4 px-3 py-1 bg-white/85 backdrop-blur-sm border border-anchor/20 uppercase tracking-[0.18em] text-[10px] font-semibold text-anchor">
           {pkg.bestFor}
         </div>
@@ -253,13 +302,19 @@ function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
         </button>
 
         {/* Hero image */}
-        <div className="relative aspect-[16/9] md:aspect-[2/1] w-full overflow-hidden border-b border-micro/15 bg-canvas">
+        <div
+          className={`relative aspect-[16/9] md:aspect-[2/1] w-full overflow-hidden border-b border-micro/15 ${
+            pkg.imageFit === 'contain' ? 'bg-white' : 'bg-canvas'
+          }`}
+        >
           {pkg.image ? (
             <img
               src={pkg.image}
               alt={pkg.title}
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover"
+              className={`absolute inset-0 w-full h-full ${
+                pkg.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+              }`}
             />
           ) : (
             <PlaceholderImage Icon={Icon} label={pkg.bestFor} />
@@ -346,46 +401,85 @@ function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
             </div>
           )}
 
-          {/* CTA strip */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-anchor/15">
-            <div className="flex flex-col">
-              <span className="uppercase tracking-[0.2em] text-[10px] font-semibold text-anchor/50">
-                Investment
-              </span>
-              <span className="font-serif text-3xl text-action leading-tight">
-                {pkg.price}
-              </span>
+          {/* CTA strip — single Book button OR option picker */}
+          {pkg.options ? (
+            <div className="pt-6 border-t border-anchor/15">
+              <div className="uppercase tracking-[0.22em] text-[10px] font-semibold text-anchor/50 mb-4">
+                Choose Your Pairing
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {pkg.options.map((opt) => (
+                  <div
+                    key={opt.id}
+                    className="flex flex-col p-5 border border-anchor/20 bg-white"
+                  >
+                    <div className="flex items-baseline justify-between gap-3 mb-2">
+                      <h3 className="font-serif text-lg leading-tight text-anchor">
+                        {opt.title}
+                      </h3>
+                      <span className="font-serif text-2xl text-action leading-none shrink-0">
+                        {opt.price}
+                      </span>
+                    </div>
+                    <p className="font-sans text-xs text-anchor/70 leading-relaxed mb-5 flex-1">
+                      {opt.description}
+                    </p>
+                    <motion.a
+                      href={`${BOOKING_BASE}/${opt.squareItemId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileTap={{ scale: 0.97 }}
+                      className="no-radius bg-anchor text-white border-2 border-transparent px-6 py-3 uppercase tracking-[0.25em] text-[10px] font-semibold inline-flex items-center justify-center gap-2 hover:bg-white hover:text-action hover:border-action transition-colors duration-300 self-start"
+                    >
+                      <span>Book This Pairing</span>
+                      <ArrowRight02Icon size={12} strokeWidth={2} />
+                    </motion.a>
+                  </div>
+                ))}
+              </div>
             </div>
-            <motion.a
-              href={bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileTap={{ scale: 0.97 }}
-              className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
-            >
-              <span>Book Package</span>
-              <ArrowRight02Icon size={14} strokeWidth={2} />
-            </motion.a>
-          </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-anchor/15">
+              <div className="flex flex-col">
+                <span className="uppercase tracking-[0.2em] text-[10px] font-semibold text-anchor/50">
+                  Investment
+                </span>
+                <span className="font-serif text-3xl text-action leading-tight">
+                  {pkg.price}
+                </span>
+              </div>
+              <motion.a
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileTap={{ scale: 0.97 }}
+                className="no-radius bg-anchor text-white border-2 border-transparent px-8 py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-white hover:text-action hover:border-action transition-colors duration-300"
+              >
+                <span>Book Package</span>
+                <ArrowRight02Icon size={14} strokeWidth={2} />
+              </motion.a>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-// Featured IDs: the two headline packages shown large on row 1 of the
-// desktop editorial grid. Everything else falls into row 2 in array order.
-const FEATURED_IDS = ['baby-bump', 'bridal'] as const;
+// Lead ID: which package appears first in both the desktop grid (top-left) and the mobile carousel.
+const LEAD_ID = 'brow-lammy-combos';
 
 export function Packages() {
   const [openId, setOpenId] = useState<string | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const openPackage = packages.find((p) => p.id === openId) || null;
 
-  const featured = FEATURED_IDS
-    .map((id) => packages.find((p) => p.id === id))
-    .filter((p): p is Package => Boolean(p));
-  const rest = packages.filter((p) => !FEATURED_IDS.includes(p.id as (typeof FEATURED_IDS)[number]));
+  // Reorder so the lead package is first; everything else preserves array order.
+  const ordered = (() => {
+    const lead = packages.find((p) => p.id === LEAD_ID);
+    const tail = packages.filter((p) => p.id !== LEAD_ID);
+    return lead ? [lead, ...tail] : packages;
+  })();
 
   return (
     <section
@@ -426,21 +520,12 @@ export function Packages() {
           </motion.div>
         </div>
 
-        {/* DESKTOP — Editorial asymmetric grid (lg+) */}
+        {/* DESKTOP — 3×2 uniform grid (lg+) */}
         <div className="hidden lg:block px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
-          <div className="max-w-7xl mx-auto flex flex-col gap-5">
-            {/* Row 1 — two featured packages, 50/50 */}
-            <div className="grid grid-cols-2 gap-5">
-              {featured.map((pkg) => (
-                <CompactCard key={pkg.id} pkg={pkg} onOpen={() => setOpenId(pkg.id)} variant="featured" />
-              ))}
-            </div>
-            {/* Row 2 — three remaining packages, 33/33/33 */}
-            <div className="grid grid-cols-3 gap-5">
-              {rest.map((pkg) => (
-                <CompactCard key={pkg.id} pkg={pkg} onOpen={() => setOpenId(pkg.id)} variant="compact" />
-              ))}
-            </div>
+          <div className="max-w-7xl mx-auto grid grid-cols-3 gap-5">
+            {ordered.map((pkg) => (
+              <CompactCard key={pkg.id} pkg={pkg} onOpen={() => setOpenId(pkg.id)} variant="compact" />
+            ))}
           </div>
         </div>
 
@@ -464,7 +549,7 @@ export function Packages() {
             className="w-full overflow-x-auto hide-scrollbar pl-6 md:pl-12 snap-x snap-mandatory"
           >
             <div className="flex gap-6 w-max pr-6 md:pr-12">
-              {packages.map((pkg) => (
+              {ordered.map((pkg) => (
                 <div
                   key={pkg.id}
                   className="snap-center w-[78vw] max-w-[340px] md:w-[44vw] md:max-w-[380px] flex"

@@ -36,6 +36,7 @@ JOBS: list[tuple[str, str, str]] = [
     ("photo", "backgrounds/brows_hero.jpg",            "backgrounds/brows_hero.webp"),
     ("photo", "Haus_Packages/HP_BG_New.jpg",           "Haus_Packages/HP_BG_New.webp"),
     ("photo", "Haus_Packages/HP_BG_mobile.jpg",        "Haus_Packages/HP_BG_mobile.webp"),
+    ("photo", "Haus_Packages/Brow_Lammy_Combos.png",   "Haus_Packages/Brow_Lammy_Combos.webp"),
     ("photo", "Logo/EH_Logo.png",                      "Logo/EH_Logo.webp"),
     ("photo", "backgrounds/greensboro_hero.png",       "backgrounds/greensboro_hero.webp"),
 ]
