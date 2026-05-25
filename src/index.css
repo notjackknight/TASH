@@ -5,6 +5,9 @@
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
+  /* Narrow-phone breakpoint. Use the `max-xs:` variant to target screens below 405px. */
+  --breakpoint-xs: 405px;
+
   --color-canvas: #D1C7B5;
   --color-anchor: #5C2828;
   --color-identity: #C28E8F;
