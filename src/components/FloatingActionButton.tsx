@@ -187,8 +187,15 @@ function FloatingContactForm({ onClose }: { onClose: () => void }) {
 }
 
 export function FloatingActionButton() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+      {/* Desktop: popup contact form */}
+      <AnimatePresence>
+        {open && <FloatingContactForm onClose={() => setOpen(false)} />}
+      </AnimatePresence>
+
       {/* Mobile: SMS link */}
       <motion.a
         href="sms:9146181809"
@@ -198,6 +205,19 @@ export function FloatingActionButton() {
       >
         <Message01Icon size={22} strokeWidth={1.5} className="text-white" />
       </motion.a>
+
+      {/* Desktop: toggle button */}
+      <motion.button
+        onClick={() => setOpen((v) => !v)}
+        whileTap={{ scale: 0.9 }}
+        aria-label="Text us"
+        className="hidden md:flex fixed bottom-8 right-8 z-40 no-radius bg-action text-white items-center justify-center gap-3 px-6 py-4 shadow-[4px_4px_0px_#4D4828] hover:translate-y-1 hover:translate-x-1 hover:shadow-[0px_0px_0px_#4D4828] transition-all duration-200"
+      >
+        <Message01Icon size={22} strokeWidth={1.5} className="text-white" />
+        <span className="uppercase tracking-[0.15em] text-xs font-semibold text-white">
+          {open ? 'Close' : 'Text Us'}
+        </span>
+      </motion.button>
     </>
   );
 }
