@@ -106,7 +106,7 @@ const services: Service[] = [
     category: 'Facials',
   },
   {
-    title: 'TODO_CLIENT: Hydrogen Oxygen Facial',
+    title: 'The TASH Hydrogen Facial',
     desc: 'A rejuvenating treatment that infuses the skin with hydrogen-rich oxygen to deeply hydrate, refresh, and revitalize the complexion. Helps neutralize free radicals, improve circulation, and enhance radiance — leaving the skin plumper, smoother, and more youthful.',
     price: '$150',
     category: 'Facials',
@@ -144,7 +144,7 @@ const services: Service[] = [
     category: 'Lashes',
   },
   {
-    title: 'TODO_CLIENT: Signature Lash Lift + Tint',
+    title: "TASH's Signature Lash Lift",
     desc: 'Take your natural lashes to the next level. Instant results with a lifted, curled appearance.',
     price: '$114',
     category: 'Lashes',
@@ -180,7 +180,7 @@ const services: Service[] = [
     category: 'Lashes',
   },
   {
-    title: 'TODO_CLIENT: Lash Removal',
+    title: 'Lash Removal',
     desc: 'Using Lost Artistry\u2019s lash removal, we leave you bare with all your natural lashes free to breathe. Say goodbye to the oldies.',
     price: '$60',
     category: 'Lashes',

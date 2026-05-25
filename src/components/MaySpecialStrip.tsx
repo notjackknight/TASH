@@ -32,7 +32,7 @@ const FACIALS: Pickable[] = [
   { title: 'The TASH Mini Facial', price: '$85', squareId: '223D7DYZVC4LRKWXOBG45O5S' },
   { title: 'The Calm TASH Facial', price: '$110', squareId: 'Y7TOZFUMBYKF6OI3TEH4ISRA' },
   { title: 'The Timeless TASH Facial', price: '$165', squareId: 'U7D6APTFN7O62BDURZ5K2F7H' },
-  { title: 'TODO_CLIENT: Hydrogen Oxygen Facial', price: '$150', squareId: 'KNGXACYJ4ME6TDR3GAK6DJXS' },
+  { title: 'The TASH Hydrogen Facial', price: '$150', squareId: '645CEG5QPFMW3WMYCYMK5PTQ' },
   { title: 'The TASH Back Facial', price: '$105', squareId: 'XHXCLU4XQGQCMCOCHU4HTVGT' },
 ];
 
@@ -41,13 +41,13 @@ const LASHES: Pickable[] = [
   { title: 'The Soft Glam TASH Fill', price: '$60', squareId: '5KEBDL53UWWHA3HXIIVKQVIN' },
   { title: 'The TASH Soft Glam Full Set', price: '$150', squareId: 'BGHJY7MV4OTC6Y73PWEUP3DL' },
   { title: 'The Soft TASH Full Set', price: '$200', squareId: 'VWRWBTJE5NMO3ZMUCVPKHG63' },
-  { title: 'TODO_CLIENT: Signature Lash Lift + Tint', price: '$114', squareId: 'J5GGVHIWT4BBITA4Y7NS2UXX' },
+  { title: "TASH's Signature Lash Lift", price: '$114', squareId: 'CDYA2KCYT3CY7CJBC2YTOFC4' },
   { title: 'The Bold TASH Volume Fill', price: '$90', squareId: 'MC5XIDIRL3S4RV2RDYD5DDJX' },
   { title: 'The Bold TASH Volume Full Set', price: '$250', squareId: 'OHKASGYJVHQDJN6OH24ZNYMU' },
   { title: 'The TASH Korean Lash Lift', price: '$125', squareId: 'QVTGFV6ARPB3SLFENDCX62F7' },
   { title: 'The Mini TASH Lash Touch Up', price: 'Variable', squareId: 'ZO5DX44DH7GEHP7VVBGCFR66' },
   { title: 'The Signature TASH Lash Tint', price: '$30', squareId: 'E2SZHLTMSLY242RNY247KH3Q' },
-  { title: 'TODO_CLIENT: Lash Removal', price: '$60', squareId: 'E3ZOWMSDIZZ3YAA7UYMIUEZJ' },
+  { title: 'Lash Removal', price: '$55', squareId: 'NKWIDYXDQDO7QHHWSML5YRHM' },
 ];
 
 const COMP_ADDON: Pickable = {
