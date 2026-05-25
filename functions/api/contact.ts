@@ -93,8 +93,27 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return Response.json({ success: true, customerId: createResult.customer?.id });
   } catch (error: unknown) {
     console.error('Square API error:', error);
+    // TEMP DIAGNOSTIC — surface the real Square error so we can see status + message
+    // in the response. Revert this block once the form is confirmed working.
+    const e = error as {
+      statusCode?: number;
+      message?: string;
+      body?: unknown;
+      errors?: unknown;
+    };
     return Response.json(
-      { error: 'Failed to submit contact form. Please try again.' },
+      {
+        error: 'Failed to submit contact form. Please try again.',
+        _debug: {
+          name: (error as Error)?.name,
+          statusCode: e?.statusCode ?? null,
+          message: e?.message ?? String(error),
+          squareErrors: e?.errors ?? e?.body ?? null,
+          tokenPresent: Boolean(env.SQUARE_ACCESS_TOKEN),
+          tokenPrefix: env.SQUARE_ACCESS_TOKEN ? env.SQUARE_ACCESS_TOKEN.slice(0, 4) : null,
+          environment: env.SQUARE_ENVIRONMENT ?? null,
+        },
+      },
       { status: 500 },
     );
   }
