@@ -7,10 +7,11 @@
     "dev": "vite --port=3000 --host=0.0.0.0",
     "dev:full": "npx wrangler pages dev --port=8788 -- npx vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
-    "preview": "npx wrangler pages dev dist",
+    "preview": "npm run build && wrangler dev",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "lint:functions": "tsc --noEmit -p functions/tsconfig.json"
+    "lint:functions": "tsc --noEmit -p functions/tsconfig.json",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
@@ -26,12 +27,13 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.38.0",
     "@cloudflare/workers-types": "^4.20260409.1",
     "@types/node": "^22.14.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0",
-    "wrangler": "^4.81.1"
+    "wrangler": "^4.94.0"
   }
 }

@@ -19,3 +19,6 @@ eh_source_assets/
 
 # One-shot Square catalog snapshot (regenerated locally by scripts/sync_from_square.ts)
 scripts/.square_catalog.json
+
+.dev.vars*
+!.dev.vars.example
