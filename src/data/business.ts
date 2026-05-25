@@ -1,7 +1,7 @@
 export const business = {
-  name: 'The Esthetic Haus',
+  name: 'TASH Skin',
   tagline: 'Where Beauty Comes Home',
-  url: 'https://www.esthetic.haus',
+  url: 'https://www.tashskin.com',
   address: {
     street: '5698 West Gate City Blvd, Suite 116',
     city: 'Greensboro',
@@ -11,8 +11,8 @@ export const business = {
   },
   phone: '(914) 618-1809',
   phoneRaw: '+19146181809',
-  email: 'theesthetichausllc@gmail.com',
-  instagram: 'https://www.instagram.com/theesthetichausbynatasha/',
+  email: 'tashskinllc@gmail.com',
+  instagram: 'https://www.instagram.com/tashskinstudio/',
   googleReviews: 'https://search.google.com/local/writereview?placeid=ChIJSclHaFkbU4gRb_RRjHSwI18',
   giftCards: 'https://app.squareup.com/gift/ML5QH1ZNJJAR5/order',
   coordinates: { lat: 36.0313889, lng: -79.8788414 },

@@ -27,6 +27,7 @@ type MenuItem = { label: string } & (
 const menuItems: MenuItem[] = [
   { label: 'Services', hash: '#services' },
   { label: 'Packages', hash: '#packages' },
+  // NOTE: shop URL intentionally retained — client has 30 days to migrate the shop subdomain separately.
   { label: 'Shop', external: 'https://theesthetichaus.shop/' },
   { label: 'Gallery', hash: '#gallery' },
   { label: 'About', to: '/greensboro-med-spa' },
@@ -74,10 +75,10 @@ export function Navigation() {
       <nav className="sticky top-0 z-50 w-full pt-safe bg-anchor border-b border-micro/10">
         <div className="w-full pl-4 pr-1 md:px-10 lg:px-16 xl:px-20 h-24 md:h-24 grid grid-cols-[auto_1fr_auto] items-center gap-2 md:gap-6">
           {/* LEFT — Logo */}
-          <Link to="/" className="flex items-center" aria-label="The Esthetic Haus — Home">
+          <Link to="/" className="flex items-center" aria-label="TASH Skin — Home">
             <img
-              src="/eh_public_assets/Logo/EH_Logo.webp"
-              alt="The Esthetic Haus"
+              src="/eh_public_assets/Logo/TASH_Logo.webp"
+              alt="TASH Skin"
               fetchPriority="high"
               decoding="async"
               className="h-14 md:h-16 lg:h-20 w-auto object-contain"
@@ -367,7 +368,7 @@ function AffiliateContent({ onClose }: { onClose: () => void }) {
         <span className="italic font-light">Affiliate Portal.</span>
       </h2>
       <p className="font-sans text-anchor/80 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">
-        Cosmedix is our trusted clinical skincare line — clinical-grade formulations curated by The Esthetic Haus for at-home maintenance between treatments. Shop directly through our portal for member pricing and authentic product.
+        Cosmedix is our trusted clinical skincare line — clinical-grade formulations curated by TASH Skin for at-home maintenance between treatments. Shop directly through our portal for member pricing and authentic product.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10">
@@ -380,7 +381,7 @@ function AffiliateContent({ onClose }: { onClose: () => void }) {
           {
             Icon: Tick02Icon,
             title: 'Curated by Us',
-            desc: 'Every product personally vetted by The Esthetic Haus team.',
+            desc: 'Every product personally vetted by the TASH Skin team.',
           },
           {
             Icon: LinkSquare02Icon,
@@ -428,7 +429,7 @@ function ReferContent({ onClose }: { onClose: () => void }) {
         </span>
       </div>
       <h2 className="font-serif text-3xl md:text-5xl leading-[1.05] text-anchor mb-5">
-        Refer a <span className="italic font-light">Haus Bestie.</span>
+        Refer a <span className="italic font-light">TASH Bestie.</span>
       </h2>
       <p className="font-sans text-anchor/80 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">
         When you refer a friend or family member, you both receive 15% off your next service of $50 or more. Because glowing is always better together.
@@ -439,7 +440,7 @@ function ReferContent({ onClose }: { onClose: () => void }) {
           {
             n: '01',
             title: 'Spread the Word',
-            desc: 'Tell a friend or family member about The Esthetic Haus.',
+            desc: 'Tell a friend or family member about TASH Skin.',
           },
           {
             n: '02',

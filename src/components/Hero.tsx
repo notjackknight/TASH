@@ -35,7 +35,9 @@ export function Hero() {
             <span className="italic font-light">comes home.</span>
           </h1>
           <p className="font-sans text-lg md:text-xl text-white/90 max-w-md mb-12 leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-            Personalized skincare, lashes, and brows in a studio built to feel like home.
+            Built from a childhood dream.
+            <br />
+            Rooted in <span className="italic font-light">TASH skin.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto items-stretch sm:items-center">
@@ -48,12 +50,12 @@ export function Hero() {
                 <ArrowRight02Icon size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </span>
             </a>
-            {/* Desktop: About The Haus | Mobile: Call Us */}
+            {/* Desktop: About TASH | Mobile: Call Us */}
             <Link
               to="/greensboro-med-spa"
               className="hidden sm:block no-radius border border-white text-white px-10 py-5 uppercase tracking-[0.2em] text-sm font-medium hover:bg-action hover:text-white hover:border-action active:scale-[0.96] transition-all duration-300 text-center"
             >
-              About The Haus
+              About TASH
             </Link>
             <a
               href="tel:9146181809"

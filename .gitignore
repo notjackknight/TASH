@@ -16,3 +16,6 @@ Thumbs.db
 
 # Raw source assets (optimized copies are written into public/eh_public_assets/)
 eh_source_assets/
+
+# One-shot Square catalog snapshot (regenerated locally by scripts/sync_from_square.ts)
+scripts/.square_catalog.json

@@ -39,8 +39,8 @@ export default function FacialsPage() {
   return (
     <>
       <SEOHead
-        title="Facials in Greensboro, NC | The Esthetic Haus"
-        description="Professional facials in Greensboro, NC, from hydrating facials and dermaplaning to acne treatments and anti-aging protocols. Customized skincare at The Esthetic Haus. Book today."
+        title="Facials in Greensboro, NC | TASH Skin"
+        description="Professional facials in Greensboro, NC, from hydrating facials and dermaplaning to acne treatments and anti-aging protocols. Customized skincare at TASH Skin. Book today."
         path="/services/facials"
       />
 
@@ -69,7 +69,7 @@ export default function FacialsPage() {
               Professional Facials{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              Every facial at The Esthetic Haus begins with a thorough skin analysis and is customized using clinical-grade Cosmedix formulations. Whether you need deep hydration, brightening, acne control, or anti-aging, we tailor the treatment to you.
+              Every facial at TASH Skin begins with a thorough skin analysis and is customized using clinical-grade Cosmedix formulations. Whether you need deep hydration, brightening, acne control, or anti-aging, we tailor the treatment to you.
             </p>
           </div>
         </div>

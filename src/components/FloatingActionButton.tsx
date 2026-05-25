@@ -165,7 +165,7 @@ function FloatingContactForm({ onClose }: { onClose: () => void }) {
                   className="mt-0.5 accent-action shrink-0"
                 />
                 <span className="font-sans text-[10px] text-anchor/50 leading-relaxed">
-                  I agree to receive texts from The Esthetic Haus. Msg &amp; data rates may apply. Reply STOP to opt out.
+                  I agree to receive texts from TASH Skin. Msg &amp; data rates may apply. Reply STOP to opt out.
                 </span>
               </label>
 

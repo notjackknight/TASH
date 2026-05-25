@@ -39,8 +39,8 @@ export default function BrowsPage() {
   return (
     <>
       <SEOHead
-        title="Brow Treatments in Greensboro, NC | The Esthetic Haus"
-        description="Brow waxing, lamination, tinting, and hybrid stain services in Greensboro, NC. Expertly shaped brows at The Esthetic Haus. Book your appointment."
+        title="Brow Treatments in Greensboro, NC | TASH Skin"
+        description="Brow waxing, lamination, tinting, and hybrid stain services in Greensboro, NC. Expertly shaped brows at TASH Skin. Book your appointment."
         path="/services/brows"
       />
 

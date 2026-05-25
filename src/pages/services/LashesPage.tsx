@@ -39,8 +39,8 @@ export default function LashesPage() {
   return (
     <>
       <SEOHead
-        title="Lash Extensions & Lash Lifts in Greensboro, NC | The Esthetic Haus"
-        description="Lash extensions, lash lifts, and lash tinting in Greensboro, NC. Classic, wispy, and volume sets customized for your eye shape. Book at The Esthetic Haus."
+        title="Lash Extensions & Lash Lifts in Greensboro, NC | TASH Skin"
+        description="Lash extensions, lash lifts, and lash tinting in Greensboro, NC. Classic, wispy, and volume sets customized for your eye shape. Book at TASH Skin."
         path="/services/lashes"
       />
 
@@ -69,7 +69,7 @@ export default function LashesPage() {
               Lash Extensions &<br />Lash Lifts{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              From classic to volume to wispy, every lash set at The Esthetic Haus is customized to complement your eye shape and personal style. We use premium products and precise application for extensions that look natural, feel lightweight, and last.
+              From classic to volume to wispy, every lash set at TASH Skin is customized to complement your eye shape and personal style. We use premium products and precise application for extensions that look natural, feel lightweight, and last.
             </p>
           </div>
         </div>

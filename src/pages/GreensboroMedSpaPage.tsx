@@ -26,8 +26,8 @@ export default function GreensboroMedSpaPage() {
   return (
     <>
       <SEOHead
-        title="About The Esthetic Haus | Skincare Studio in Greensboro, NC"
-        description="The Esthetic Haus by Natasha is a licensed esthetician studio in Greensboro, NC specializing in customized facials, lash extensions, brow treatments, microneedling, and professional skincare. Book your appointment today."
+        title="About TASH Skin | Skincare Studio in Greensboro, NC"
+        description="TASH Skin by Natasha is a licensed esthetician studio in Greensboro, NC specializing in customized facials, lash extensions, brow treatments, microneedling, and professional skincare. Book your appointment today."
         path="/greensboro-med-spa"
       />
 
@@ -37,7 +37,7 @@ export default function GreensboroMedSpaPage() {
           <div className="absolute inset-0">
             <img
               src="/eh_public_assets/backgrounds/greensboro_hero.webp"
-              alt="The Esthetic Haus in Greensboro, NC"
+              alt="TASH Skin in Greensboro, NC"
               className="w-full h-full object-cover"
               fetchPriority="high"
               decoding="async"
@@ -78,7 +78,7 @@ export default function GreensboroMedSpaPage() {
 
           <div className="relative w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 py-10 md:py-14 lg:py-12">
             <div className="lg:-mb-4">
-              <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'About The Haus' }]} />
+              <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'About TASH Skin' }]} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -92,13 +92,16 @@ export default function GreensboroMedSpaPage() {
 
                 <div className="font-sans text-sm md:text-base text-anchor/70 leading-relaxed space-y-5">
                   <p>
-                    The Esthetic Haus by Natasha is a licensed esthetician studio in Greensboro, NC, built on the belief that skincare should be personal, intentional, and rooted in education. Located along the Gate City Blvd corridor, The Haus specializes in customized facials, chemical peels, dermaplaning, microneedling, lash extensions, brow treatments, and professional skincare using clinical-grade Cosmedix formulations. Every treatment is tailored to your unique skin, your concerns, and your goals. There are no cookie-cutter protocols here.
+                    TASH was more than just a nickname… it was the name behind a little girl with a big dream. Long before this business ever existed, before the treatments, the studio, or the brand, there was simply a passion that never left my heart. Skin has always been more than beauty to me. It's confidence. It's healing. It's self-love. It's the way someone can walk into a room feeling insecure and leave feeling like themselves again.
                   </p>
                   <p>
-                    Whether you're addressing acne, hyperpigmentation, signs of aging, or simply investing in the kind of self-care that makes you feel like yourself again, Natasha takes the time to understand your skin and build a treatment plan that actually works. Skin health education is at the core of everything we do, because the best results happen when you understand your skin, not just when you treat it.
+                    TASH skin was created from years of dreaming, growing, learning, and believing that one day I could build something meaningful. A space where people feel seen, cared for, and comfortable in their own skin. What started as a childhood passion slowly became a purpose, and now that dream has become reality.
                   </p>
                   <p>
-                    The Haus was created to be warm, intimate, and welcoming. It's the kind of place where you're treated like family, where your esthetician remembers your name and your skin history. Every visit is designed to feel familiar yet elevated. Come experience what personalized esthetics feels like in a space that was made to feel a little like home.
+                    This brand is deeply personal to me because it carries the name that has followed me through every stage of life; the younger version of me who dreamed fearlessly, and the woman I've become through hard work, faith, and passion. Every service, every client, and every detail behind TASH skin is rooted in intention, education, and genuine care.
+                  </p>
+                  <p>
+                    More than anything, I want TASH skin to be a place where confidence grows, insecurities soften, and people are reminded that beauty is not about perfection and it's about feeling radiant, empowered, and at home within yourself.
                   </p>
                 </div>
 

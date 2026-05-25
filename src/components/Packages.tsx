@@ -44,15 +44,15 @@ const packages: Package[] = [
   {
     id: 'bridal',
     squareItemId: '76N4X4FCXR7BQ5664YDDVSFZ',
-    title: 'The Bridal Haus Experience',
+    title: 'The Bridal Experience',
     bestFor: 'Brides',
     price: '$785',
     Icon: CrownIcon,
-    image: '/eh_public_assets/Haus_Packages/The_Bridal_Haus_Experience.webp',
+    image: '/eh_public_assets/Packages/The_Bridal_Experience.webp',
     description:
       'A fully customizable bridal beauty journey designed to have you glowing from head to toe — skin, smile, lashes, brows, and beyond. Spaced strategically over 3–6 months (or condensed if needed) to ensure peak results by your wedding day.',
     includes: [
-      '3 Haus Prep Facials — our signature facial series tailored to your skin\u2019s needs and wedding timeline. Focused on clarity, hydration, and a long-lasting glow.',
+      '3 TASH Prep Facials — our signature facial series tailored to your skin\u2019s needs and wedding timeline. Focused on clarity, hydration, and a long-lasting glow.',
       '3 Rounds of Professional Teeth Whitening — gradual, safe sessions for a bright, photo-ready smile without sensitivity.',
       'Lash Enhancement (choose one) — Lash Lift or Lash Extensions.',
       'Scalp Therapy & Massage — a deeply relaxing scalp treatment to promote circulation, relieve stress, and support healthy hair.',
@@ -74,55 +74,55 @@ const packages: Package[] = [
     id: 'new-mommy',
     squareItemId: '', // Regular catalog item, not an appointment service — uses directUrl instead
     directUrl: 'https://square.link/u/htvG5sXm',
-    title: 'The Haus New Mommy Reset Glow Package',
+    title: 'The New Mommy Reset Glow Package',
     bestFor: 'New Moms',
     price: '$400',
     Icon: FlowerIcon,
-    image: '/eh_public_assets/Haus_Packages/The_Haus_New_Mommy_Reset_Glow_Package.webp',
+    image: '/eh_public_assets/Packages/The_New_Mommy_Reset_Glow_Package.webp',
     description:
       'Designed for new mamas to provide nourishing care and support for rejuvenated, radiant skin. This thoughtfully curated package offers a seamless way to refresh and restore your natural glow with ease and convenience. New mamas deserve the perfect glow.',
   },
   {
     id: 'baby-bump',
     squareItemId: 'LJDOK3TP4H5NF42BJR6FVHTG',
-    title: 'The Haus Baby Bump Package',
+    title: 'The Baby Bump Package',
     bestFor: 'Expecting Moms',
     price: '$225',
     Icon: Baby01Icon,
-    image: '/eh_public_assets/Haus_Packages/The_Haus_Baby_Bump_Package.webp',
+    image: '/eh_public_assets/Packages/The_Baby_Bump_Package.webp',
     description:
       'A nurturing, glow-enhancing experience thoughtfully designed for expecting mothers. Calms hormonal skin changes, boosts hydration, and promotes radiant, healthy-looking skin in the safest, most soothing way. With gentle, pregnancy-safe products and intentional touch, this experience encourages deep relaxation while supporting your skin through every trimester. Your moment to pause, breathe, and embrace the beauty of motherhood — glowing confidently from bump to beyond.',
   },
   {
     id: 'molecular-peel',
     squareItemId: '3YLSHWRCH6VNWHCAQFN3DTJV',
-    title: 'The Haus Molecular Peel Package',
+    title: 'The Molecular Peel Package',
     bestFor: 'Skin Renewal',
     price: '$840',
     Icon: Leaf01Icon,
-    image: '/eh_public_assets/Haus_Packages/The_Haus_Molecular_Peel_Package.webp',
+    image: '/eh_public_assets/Packages/The_Molecular_Peel_Package.webp',
     description:
       'A curated series of 6 Cosmedix peels designed to target your specific skin goals with precision and results. This transformative treatment plan works to improve texture, tone, acne, and signs of aging through a structured, results-driven approach — all offered at a set package price for maximum value and consistency. Peels can also be done individually.',
   },
   {
     id: 'blemish-breakout',
     squareItemId: '2A7PZDYEUV5MGISXTAYL3UJF',
-    title: 'The Haus Blemish + Breakout Package',
+    title: 'The Blemish + Breakout Package',
     bestFor: 'Acne Care',
     price: '$2,300',
     Icon: SparklesIcon,
-    image: '/eh_public_assets/Haus_Packages/The_Haus_Blemish+Breakout_Package.webp',
+    image: '/eh_public_assets/Packages/The_Blemish+Breakout_Package.webp',
     description:
-      'A comprehensive, results-focused skin transformation program designed to target active acne, congestion, and post-blemish marking at the source. This intensive series includes 10 corrective acne facials, strategically scheduled to restore balance, reduce inflammation, and support clearer, healthier-looking skin. Your plan also features progressive Cosmedix molecular peels to refine texture, improve tone, and accelerate cellular renewal, along with deeply nourishing hydration masks to maintain skin strength and barrier health throughout your journey. To support your results at home, you\u2019ll receive one complimentary Cosmedix retail product — on the haus — personally selected to align with your target skin goals.',
+      'A comprehensive, results-focused skin transformation program designed to target active acne, congestion, and post-blemish marking at the source. This intensive series includes 10 corrective acne facials, strategically scheduled to restore balance, reduce inflammation, and support clearer, healthier-looking skin. Your plan also features progressive Cosmedix molecular peels to refine texture, improve tone, and accelerate cellular renewal, along with deeply nourishing hydration masks to maintain skin strength and barrier health throughout your journey. To support your results at home, you\u2019ll receive one complimentary Cosmedix retail product — on us — personally selected to align with your target skin goals.',
   },
   {
     id: 'brow-lammy-combos',
     squareItemId: '',
-    title: 'The Haus Signature Brow + Lash Package',
+    title: 'The Signature Brow + Lash Package',
     bestFor: 'Lashes + Brows',
     price: '$195 / $205',
     Icon: EyeIcon,
-    image: '/eh_public_assets/Haus_Packages/Brow_Lammy_Combos.webp',
+    image: '/eh_public_assets/Packages/Brow_Lash_Combo.webp',
     imageFit: 'contain',
     description:
       'Two signature pairings that bring your brows and lashes into perfect balance — choose the combination that fits your look.',
@@ -365,7 +365,7 @@ function PackageModal({ pkg, onClose }: { pkg: Package; onClose: () => void }) {
               {pkg.highlights && (
                 <div>
                   <div className="uppercase tracking-[0.22em] text-[10px] font-semibold text-anchor/50 mb-3">
-                    The Haus Difference
+                    The TASH Difference
                   </div>
                   <ul className="space-y-2">
                     {pkg.highlights.map((h, i) => (
@@ -490,7 +490,7 @@ export function Packages() {
       <div
         className="absolute inset-0 pointer-events-none bg-cover bg-no-repeat bg-left-top lg:bg-center"
         style={{
-          backgroundImage: "url('/eh_public_assets/Haus_Packages/HP_BG_New.webp')",
+          backgroundImage: "url('/eh_public_assets/Packages/HP_BG_New.webp')",
         }}
       />
       {/* Subtle readability wash behind title — mobile only */}
@@ -511,7 +511,7 @@ export function Packages() {
           >
             <div>
               <h2 className="font-serif text-5xl md:text-6xl text-anchor whitespace-nowrap">
-                The Haus Packages
+                TASH Packages
               </h2>
             </div>
             <p className="font-sans text-base md:text-lg text-anchor/70 md:text-right max-w-[22rem] leading-relaxed md:mb-1">

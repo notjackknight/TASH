@@ -38,8 +38,8 @@ export default function TeethWhiteningPage() {
   return (
     <>
       <SEOHead
-        title="Professional Teeth Whitening in Greensboro, NC | $200 | The Esthetic Haus"
-        description="Professional teeth whitening in Greensboro, NC. Three rounds for $200 using professional-grade whitening products. Fast, effective results at The Esthetic Haus."
+        title="Professional Teeth Whitening in Greensboro, NC | $200 | TASH Skin"
+        description="Professional teeth whitening in Greensboro, NC. Three rounds for $200 using professional-grade whitening products. Fast, effective results at TASH Skin."
         path="/services/teeth-whitening"
       />
 
@@ -70,7 +70,7 @@ export default function TeethWhiteningPage() {
               Professional Teeth<br />Whitening{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              Get a brighter, more confident smile with professional teeth whitening at The Esthetic Haus. Our service uses professional-grade whitening products across three consecutive rounds in one comfortable appointment, at a fraction of the cost of other whitening options.
+              Get a brighter, more confident smile with professional teeth whitening at TASH Skin. Our service uses professional-grade whitening products across three consecutive rounds in one comfortable appointment, at a fraction of the cost of other whitening options.
             </p>
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function TeethWhiteningPage() {
               </div>
 
               <button
-                onClick={() => openBooking('Pearly White Haus Teeth Whitening')}
+                onClick={() => openBooking('The TASH Pearly White Teeth Whitening')}
                 className="no-radius bg-anchor text-white px-8 py-4 uppercase tracking-[0.25em] text-xs font-semibold inline-flex items-center justify-center gap-3 hover:bg-action transition-colors duration-300 w-full"
               >
                 <span className="lg:hidden">Book Now</span>

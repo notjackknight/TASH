@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ShoppingBag02Icon, ArrowUpRight01Icon } from 'hugeicons-react';
 
+// NOTE: shop URL intentionally retained — client has 30 days to migrate the shop subdomain separately.
 const SHOP_URL = 'https://theesthetichaus.shop/';
 
 export function ShopStrip() {
@@ -28,7 +29,7 @@ export function ShopStrip() {
               Now Shipping
             </span>
             <span className="font-serif text-lg md:text-2xl leading-tight truncate">
-              Shop <span className="italic font-light">The Haus.</span>
+              Shop <span className="italic font-light">TASH Skin.</span>
             </span>
           </div>
         </div>

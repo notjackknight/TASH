@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.esthetic.haus/sitemap.xml
+Sitemap: https://www.tashskin.com/sitemap.xml

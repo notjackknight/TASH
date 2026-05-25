@@ -88,17 +88,17 @@ function TermsContent() {
       <h1 className="font-serif text-4xl md:text-5xl text-anchor mb-2 leading-tight">
         Terms of <span className="italic font-light">Use</span>
       </h1>
-      <p className="text-anchor/50 text-sm mb-10">Last updated: April 2026</p>
+      <p className="text-anchor/50 text-sm mb-10">Last updated: May 2026</p>
 
       <Section title="Acceptance of Terms">
         <p>
-          By accessing or using The Esthetic Haus website and services, you agree to be bound by these Terms of Use. If you do not agree, please do not use our website or book any services.
+          By accessing or using TASH Skin website and services, you agree to be bound by these Terms of Use. If you do not agree, please do not use our website or book any services.
         </p>
       </Section>
 
       <Section title="Services">
         <p>
-          The Esthetic Haus provides esthetic services including facials, lash enhancements, brow treatments, waxing, teeth whitening, and related skincare treatments. All services are performed by licensed estheticians. Results may vary by individual.
+          TASH Skin provides esthetic services including facials, lash enhancements, brow treatments, waxing, teeth whitening, and related skincare treatments. All services are performed by licensed estheticians. Results may vary by individual.
         </p>
       </Section>
 
@@ -133,7 +133,7 @@ function TermsContent() {
           We understand that emergencies happen. Please contact us as soon as possible, and we will do our best to accommodate on a case-by-case basis.
         </p>
         <p>
-          By booking an appointment with The Esthetic Haus, you acknowledge and agree to this cancellation policy.
+          By booking an appointment with TASH Skin, you acknowledge and agree to this cancellation policy.
         </p>
       </Section>
 
@@ -145,13 +145,13 @@ function TermsContent() {
 
       <Section title="Intellectual Property">
         <p>
-          All content on this website — including text, images, logos, and design — is the property of The Esthetic Haus and may not be reproduced, distributed, or used without prior written consent.
+          All content on this website — including text, images, logos, and design — is the property of TASH Skin and may not be reproduced, distributed, or used without prior written consent.
         </p>
       </Section>
 
       <Section title="Limitation of Liability">
         <p>
-          The Esthetic Haus is not liable for any adverse reactions, injuries, or dissatisfaction arising from services rendered, provided that services were performed in accordance with industry standards. Clients are responsible for disclosing relevant medical conditions, allergies, and skin sensitivities prior to treatment.
+          TASH Skin is not liable for any adverse reactions, injuries, or dissatisfaction arising from services rendered, provided that services were performed in accordance with industry standards. Clients are responsible for disclosing relevant medical conditions, allergies, and skin sensitivities prior to treatment.
         </p>
       </Section>
 
@@ -164,8 +164,8 @@ function TermsContent() {
       <Section title="Contact">
         <p>
           Questions about these terms? Reach us at{' '}
-          <a href="mailto:theesthetichausllc@gmail.com" className="text-action hover:text-anchor transition-colors">
-            theesthetichausllc@gmail.com
+          <a href="mailto:tashskinllc@gmail.com" className="text-action hover:text-anchor transition-colors">
+            tashskinllc@gmail.com
           </a>{' '}
           or call{' '}
           <a href="tel:9146181809" className="text-action hover:text-anchor transition-colors">
@@ -183,7 +183,7 @@ function PrivacyContent() {
       <h1 className="font-serif text-4xl md:text-5xl text-anchor mb-2 leading-tight">
         Privacy <span className="italic font-light">Policy</span>
       </h1>
-      <p className="text-anchor/50 text-sm mb-10">Last updated: April 2026</p>
+      <p className="text-anchor/50 text-sm mb-10">Last updated: May 2026</p>
 
       <Section title="Information We Collect">
         <p>When you book an appointment or contact us, we may collect:</p>
@@ -239,8 +239,8 @@ function PrivacyContent() {
       <Section title="Contact">
         <p>
           For privacy-related questions, reach us at{' '}
-          <a href="mailto:theesthetichausllc@gmail.com" className="text-action hover:text-anchor transition-colors">
-            theesthetichausllc@gmail.com
+          <a href="mailto:tashskinllc@gmail.com" className="text-action hover:text-anchor transition-colors">
+            tashskinllc@gmail.com
           </a>{' '}
           or call{' '}
           <a href="tel:9146181809" className="text-action hover:text-anchor transition-colors">

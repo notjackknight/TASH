@@ -45,8 +45,8 @@ export function About() {
           >
             <div className="relative aspect-[3/4] w-full bg-anchor border-2 border-anchor shadow-[10px_10px_0px_rgba(92,40,40,0.25)] md:shadow-[14px_14px_0px_rgba(92,40,40,0.25)] overflow-hidden">
               <img
-                src="/eh_public_assets/Heart_behind_the_haus/A00A7255_1771383766.webp"
-                alt="Natasha, founder of The Esthetic Haus"
+                src="/eh_public_assets/Heart_behind_the_brand/founder_portrait.webp"
+                alt="Natasha, founder of TASH Skin"
                 loading="lazy"
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -76,7 +76,7 @@ export function About() {
               <h2 className="font-serif text-4xl md:text-5xl lg:text-[3.5rem] text-anchor leading-[1.05] mb-4 md:mb-8 lg:mb-5">
                 The Heart Behind
                 <br />
-                <span className="italic font-light">the Haus.</span>
+                <span className="italic font-light">TASH Skin.</span>
               </h2>
 
               {/* Hairline rule */}
@@ -86,16 +86,16 @@ export function About() {
               <div className="font-serif text-anchor/85 text-base md:text-lg leading-[1.65] md:leading-[1.75] lg:leading-[1.55] space-y-4 md:space-y-5 lg:space-y-3">
                 <p>
                   <span className="float-left font-serif text-[4.5rem] md:text-[6rem] leading-[0.78] mr-3 mt-1 text-anchor italic font-light">
-                    I
+                    T
                   </span>
-                  decided to name my company The Esthetic Haus because I wanted it to feel like more than just a place for service; I wanted it to feel like home. <span className="italic">"Haus"</span> represents warmth, comfort, and a welcoming space where clients can relax, feel safe, and truly be cared for.
+                  ASH was more than just a nickname… it was the name behind a little girl with a big dream. Long before this business ever existed, before the treatments, the studio, or the brand, there was simply a passion that never left my heart. Skin has always been more than beauty to me. It's confidence. It's healing. It's self-love. It's the way someone can walk into a room feeling insecure and leave feeling like themselves again.
                 </p>
 
-                {/* Second paragraph — collapsible on mobile, always visible on md+ */}
-                <div className="hidden md:block">
-                  <p>
-                    It reflects my vision of creating an environment rooted in intention, education, and elevated skincare, while still feeling personal and inviting. The name embodies my belief that esthetics isn't just about beauty, but about confidence, self-care, and belonging — where every client is treated like family and every visit feels familiar yet refined.
-                  </p>
+                {/* Paragraphs 2–4 — always visible on md+, collapsible on mobile */}
+                <div className="hidden md:block space-y-4 md:space-y-5 lg:space-y-3">
+                  <p>TASH skin was created from years of dreaming, growing, learning, and believing that one day I could build something meaningful. A space where people feel seen, cared for, and comfortable in their own skin. What started as a childhood passion slowly became a purpose, and now that dream has become reality.</p>
+                  <p>This brand is deeply personal to me because it carries the name that has followed me through every stage of life; the younger version of me who dreamed fearlessly, and the woman I've become through hard work, faith, and passion. Every service, every client, and every detail behind TASH skin is rooted in intention, education, and genuine care.</p>
+                  <p>More than anything, I want TASH skin to be a place where confidence grows, insecurities soften, and people are reminded that beauty is not about perfection and it's about feeling radiant, empowered, and at home within yourself.</p>
                 </div>
                 <AnimatePresence initial={false}>
                   {expanded && (
@@ -107,9 +107,11 @@ export function About() {
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                       className="md:hidden overflow-hidden"
                     >
-                      <p className="pt-4">
-                        It reflects my vision of creating an environment rooted in intention, education, and elevated skincare, while still feeling personal and inviting. The name embodies my belief that esthetics isn't just about beauty, but about confidence, self-care, and belonging — where every client is treated like family and every visit feels familiar yet refined.
-                      </p>
+                      <div className="pt-4 space-y-4">
+                        <p>TASH skin was created from years of dreaming, growing, learning, and believing that one day I could build something meaningful. A space where people feel seen, cared for, and comfortable in their own skin. What started as a childhood passion slowly became a purpose, and now that dream has become reality.</p>
+                        <p>This brand is deeply personal to me because it carries the name that has followed me through every stage of life; the younger version of me who dreamed fearlessly, and the woman I've become through hard work, faith, and passion. Every service, every client, and every detail behind TASH skin is rooted in intention, education, and genuine care.</p>
+                        <p>More than anything, I want TASH skin to be a place where confidence grows, insecurities soften, and people are reminded that beauty is not about perfection and it's about feeling radiant, empowered, and at home within yourself.</p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>

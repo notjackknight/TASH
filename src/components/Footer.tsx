@@ -29,7 +29,7 @@ export function Footer() {
     <div className="flex flex-col gap-4 lg:gap-5">
       <ContactTile Icon={Location01Icon}>
         <div className="font-semibold text-white">
-          The Esthetic Haus @ Suites by Ivy House
+          TASH Skin @ Suites by Ivy House
         </div>
         <div className="text-white/80 mt-1">
           5698 West Gate City Blvd
@@ -42,7 +42,7 @@ export function Footer() {
           href="/greensboro-med-spa"
           className="inline-block mt-2 text-white/40 hover:text-white text-xs uppercase tracking-[0.18em] font-semibold transition-colors"
         >
-          About The Haus
+          About TASH
         </a>
       </ContactTile>
       <ContactTile Icon={Call02Icon}>
@@ -52,10 +52,10 @@ export function Footer() {
       </ContactTile>
       <ContactTile Icon={Mail01Icon}>
         <a
-          href="mailto:theesthetichausllc@gmail.com"
+          href="mailto:tashskinllc@gmail.com"
           className="hover:text-white transition-colors break-all sm:break-normal"
         >
-          theesthetichausllc@gmail.com
+          tashskinllc@gmail.com
         </a>
       </ContactTile>
     </div>
@@ -124,7 +124,7 @@ export function Footer() {
             </span>
           </div>
           <h2 className="font-serif text-4xl md:text-6xl lg:text-5xl text-white leading-[1.05]">
-            Visit the <span className="italic font-light">Haus.</span>
+            Visit <span className="italic font-light">TASH Skin.</span>
           </h2>
         </motion.div>
 
@@ -153,7 +153,7 @@ export function Footer() {
         <div className="pt-8 mt-10 lg:pt-4 lg:mt-6 border-t border-white/20">
           <div className="flex flex-col items-center gap-4 md:gap-6 lg:gap-1 mb-6 md:mb-8 lg:mb-3">
             <div className="font-serif text-base md:text-2xl lg:text-2xl tracking-[0.18em] md:tracking-[0.25em] uppercase text-white whitespace-nowrap">
-              The Esthetic Haus
+              TASH Skin
             </div>
             <div className="font-serif italic text-white/50 text-sm">
               Where every visit feels like home.
@@ -161,10 +161,10 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans uppercase tracking-widest text-white/50">
-            <p>&copy; {new Date().getFullYear()} The Esthetic Haus</p>
+            <p>&copy; {new Date().getFullYear()} TASH Skin</p>
             <div className="flex items-center gap-6">
               <a
-                href="https://www.instagram.com/theesthetichausbynatasha/"
+                href="https://www.instagram.com/tashskinstudio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -376,14 +376,14 @@ function ContactTile({
 // This prevents the perpetual Chrome loading spinner caused by
 // the Maps embed continuously fetching sub-resources.
 const MAPS_SRC =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3227.101640694383!2d-79.8970306!3d36.0178113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88531b596847c949%3A0x5f23b0748c51f46f!2sThe%20Esthetic%20Haus!5e0!3m2!1sen!2sus!4v1776008617696!5m2!1sen!2sus';
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3227.101640694383!2d-79.8970306!3d36.0178113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88531b596847c949%3A0x5f23b0748c51f46f!2sTASH%20Skin!5e0!3m2!1sen!2sus!4v1776008617696!5m2!1sen!2sus';
 
 function DeferredMap() {
   return (
     <div className="w-full">
       <div className="relative w-full h-[250px] lg:h-[200px] border border-white/30 no-radius overflow-hidden">
         <iframe
-          title="The Esthetic Haus location"
+          title="TASH Skin location"
           src={MAPS_SRC}
           width="100%"
           height="100%"

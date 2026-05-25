@@ -23,7 +23,7 @@ export function SEOHead({ title, description, path, type = 'website', image }: S
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content="The Esthetic Haus" />
+      <meta property="og:site_name" content={business.name} />
       <meta property="og:locale" content="en_US" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />

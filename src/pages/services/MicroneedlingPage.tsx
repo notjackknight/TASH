@@ -39,8 +39,8 @@ export default function MicroneedlingPage() {
   return (
     <>
       <SEOHead
-        title="Microneedling in Greensboro, NC | The Esthetic Haus"
-        description="Professional microneedling treatment in Greensboro, NC. Stimulates collagen production, reduces fine lines, and improves skin texture at The Esthetic Haus."
+        title="Microneedling in Greensboro, NC | TASH Skin"
+        description="Professional microneedling treatment in Greensboro, NC. Stimulates collagen production, reduces fine lines, and improves skin texture at TASH Skin."
         path="/services/microneedling"
       />
 
@@ -69,7 +69,7 @@ export default function MicroneedlingPage() {
               Microneedling{' '}<span className="italic font-light">in<br />Greensboro, NC</span>
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
-              Microneedling is one of the most effective minimally invasive treatments for improving skin texture, reducing fine lines, and stimulating your skin's natural collagen production. At The Esthetic Haus, we use professional-grade technology to deliver visible results with minimal downtime.
+              Microneedling is one of the most effective minimally invasive treatments for improving skin texture, reducing fine lines, and stimulating your skin's natural collagen production. At TASH Skin, we use professional-grade technology to deliver visible results with minimal downtime.
             </p>
           </div>
         </div>

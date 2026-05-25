@@ -24,30 +24,30 @@ type Pickable = {
 };
 
 const FACIALS: Pickable[] = [
-  { title: 'The Signature Haus Facial', price: '$100', squareId: 'EQHOWXLBUOJOLW3DZP4WM66X' },
-  { title: 'Hydraglow Haus Facial', price: '$160', squareId: 'ETTV4JN6AK35VESGH6GWS4XJ' },
-  { title: 'The Dermaplane Haus Facial', price: '$130', squareId: '3ZY7ALQGYG3QMMQIXXIXO3VU' },
-  { title: 'Brightening Haus Facial', price: '$120', squareId: 'TPROWVTAIZIZEGMQJAJL2AJ6' },
-  { title: 'Acne Haus Detox Facial', price: '$150', squareId: '7X26S4PCSB2ZHPBZVWNUW6X2' },
-  { title: 'Haus Express Facial', price: '$85', squareId: '223D7DYZVC4LRKWXOBG45O5S' },
-  { title: 'Calm Haus Facial', price: '$110', squareId: 'Y7TOZFUMBYKF6OI3TEH4ISRA' },
-  { title: 'Timeless Haus Facial', price: '$165', squareId: 'U7D6APTFN7O62BDURZ5K2F7H' },
-  { title: 'Haus Hydrogen Oxygen Facial', price: '$150', squareId: 'KNGXACYJ4ME6TDR3GAK6DJXS' },
-  { title: 'Haus Back Facial', price: '$105', squareId: 'XHXCLU4XQGQCMCOCHU4HTVGT' },
+  { title: 'The Signature TASH Facial', price: '$100', squareId: 'EQHOWXLBUOJOLW3DZP4WM66X' },
+  { title: 'The TASH Hydraglow Facial', price: '$160', squareId: 'ETTV4JN6AK35VESGH6GWS4XJ' },
+  { title: 'The TASH Dermaplane Facial', price: '$130', squareId: '3ZY7ALQGYG3QMMQIXXIXO3VU' },
+  { title: 'The TASH Brightening Facial', price: '$120', squareId: 'TPROWVTAIZIZEGMQJAJL2AJ6' },
+  { title: 'The Pure TASH Acne Detox Facial', price: '$150', squareId: '7X26S4PCSB2ZHPBZVWNUW6X2' },
+  { title: 'The TASH Mini Facial', price: '$85', squareId: '223D7DYZVC4LRKWXOBG45O5S' },
+  { title: 'The Calm TASH Facial', price: '$110', squareId: 'Y7TOZFUMBYKF6OI3TEH4ISRA' },
+  { title: 'The Timeless TASH Facial', price: '$165', squareId: 'U7D6APTFN7O62BDURZ5K2F7H' },
+  { title: 'TODO_CLIENT: Hydrogen Oxygen Facial', price: '$150', squareId: 'KNGXACYJ4ME6TDR3GAK6DJXS' },
+  { title: 'The TASH Back Facial', price: '$105', squareId: 'XHXCLU4XQGQCMCOCHU4HTVGT' },
 ];
 
 const LASHES: Pickable[] = [
-  { title: 'Classic Haus Fill', price: '$75', squareId: 'JUDECILCHC6MPZLY7UIU6CC5' },
-  { title: 'Haus Wispy Dream Fill', price: '$60', squareId: '5KEBDL53UWWHA3HXIIVKQVIN' },
-  { title: 'The Haus of Wispy Dreams Full Set', price: '$150', squareId: 'BGHJY7MV4OTC6Y73PWEUP3DL' },
-  { title: 'Classic Haus Full Set', price: '$200', squareId: 'VWRWBTJE5NMO3ZMUCVPKHG63' },
-  { title: 'Signature Haus Lash Lift + Tint', price: '$114', squareId: 'J5GGVHIWT4BBITA4Y7NS2UXX' },
-  { title: 'The Power Haus Fill', price: '$90', squareId: 'MC5XIDIRL3S4RV2RDYD5DDJX' },
-  { title: 'The Power House Volume Full Set', price: '$250', squareId: 'OHKASGYJVHQDJN6OH24ZNYMU' },
-  { title: 'The Haus Korean Lash Lift', price: '$125', squareId: 'QVTGFV6ARPB3SLFENDCX62F7' },
-  { title: 'Mini Haus Lash Touch Up', price: 'Variable', squareId: 'ZO5DX44DH7GEHP7VVBGCFR66' },
-  { title: 'Signature Haus Lash Tint', price: '$30', squareId: 'E2SZHLTMSLY242RNY247KH3Q' },
-  { title: 'The Haus Lash Removal', price: '$60', squareId: 'E3ZOWMSDIZZ3YAA7UYMIUEZJ' },
+  { title: 'The Soft TASH Fill', price: '$75', squareId: 'JUDECILCHC6MPZLY7UIU6CC5' },
+  { title: 'The Soft Glam TASH Fill', price: '$60', squareId: '5KEBDL53UWWHA3HXIIVKQVIN' },
+  { title: 'The TASH Soft Glam Full Set', price: '$150', squareId: 'BGHJY7MV4OTC6Y73PWEUP3DL' },
+  { title: 'The Soft TASH Full Set', price: '$200', squareId: 'VWRWBTJE5NMO3ZMUCVPKHG63' },
+  { title: 'TODO_CLIENT: Signature Lash Lift + Tint', price: '$114', squareId: 'J5GGVHIWT4BBITA4Y7NS2UXX' },
+  { title: 'The Bold TASH Volume Fill', price: '$90', squareId: 'MC5XIDIRL3S4RV2RDYD5DDJX' },
+  { title: 'The Bold TASH Volume Full Set', price: '$250', squareId: 'OHKASGYJVHQDJN6OH24ZNYMU' },
+  { title: 'The TASH Korean Lash Lift', price: '$125', squareId: 'QVTGFV6ARPB3SLFENDCX62F7' },
+  { title: 'The Mini TASH Lash Touch Up', price: 'Variable', squareId: 'ZO5DX44DH7GEHP7VVBGCFR66' },
+  { title: 'The Signature TASH Lash Tint', price: '$30', squareId: 'E2SZHLTMSLY242RNY247KH3Q' },
+  { title: 'TODO_CLIENT: Lash Removal', price: '$60', squareId: 'E3ZOWMSDIZZ3YAA7UYMIUEZJ' },
 ];
 
 const COMP_ADDON: Pickable = {
@@ -58,9 +58,9 @@ const COMP_ADDON: Pickable = {
 };
 
 const DISCOUNT_ADDONS: Pickable[] = [
-  { title: 'Haus Jelly Mask Add-On', price: '$30', squareId: 'YY6YJKOEX7F5BFVMJACS7JQU' },
-  { title: 'Haus of Hydrated Lip Mask', price: '$15', squareId: 'NWYCOO7LPMJM2NLA62QI46HN' },
-  { title: 'Haus Facial Machine Add-Ons', price: '$40', squareId: '72ZXBRVFKMELUMJO24IEBXZZ' },
+  { title: "TASH's Jelly Mask Add-On", price: '$30', squareId: 'YY6YJKOEX7F5BFVMJACS7JQU' },
+  { title: 'The TASH Hydrated Lip Mask', price: '$15', squareId: 'NWYCOO7LPMJM2NLA62QI46HN' },
+  { title: 'TASH Facial Machine Add-Ons', price: '$40', squareId: '72ZXBRVFKMELUMJO24IEBXZZ' },
   { title: 'Cosmedix Molecular Peels', price: 'Variable', squareId: 'WDWISQ6C7IRCMGNK7KVINUWU' },
 ];
 
@@ -93,7 +93,7 @@ export function MaySpecialStrip() {
                 May Special
               </span>
               <span className="font-serif text-lg md:text-2xl leading-tight truncate">
-                Glow Haus <span className="italic font-light">Season.</span>
+                Glow <span className="italic font-light">Season.</span>
               </span>
             </div>
           </div>
@@ -192,7 +192,7 @@ function MaySpecialModal({ onClose }: { onClose: () => void }) {
             </span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl leading-[1.05] text-anchor mb-3">
-            Glow Haus <span className="italic font-light">Season.</span>
+            Glow <span className="italic font-light">Season.</span>
           </h2>
           <p className="font-sans text-anchor/80 text-sm md:text-base leading-relaxed max-w-xl">
             Book any facial or lash service & receive a complimentary brow wax
@@ -427,7 +427,7 @@ function MaySpecialModal({ onClose }: { onClose: () => void }) {
                       {addonChoice?.squareId === COMP_ADDON.squareId
                         ? '(complimentary brow wax)'
                         : '($15 off your add-on)'}{' '}
-                      will be applied at checkout once both bookings are confirmed by The Esthetic Haus.
+                      will be applied at checkout once both bookings are confirmed by TASH Skin.
                     </div>
                   </div>
                 )}

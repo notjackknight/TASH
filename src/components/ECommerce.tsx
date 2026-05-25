@@ -28,7 +28,7 @@ export function GiftCards() {
             <h2 className="font-serif text-4xl md:text-6xl text-anchor mb-4 md:mb-6 leading-[1.05]">
               Give the
               <br />
-              <span className="italic font-light">Gift of Haus.</span>
+              <span className="italic font-light">Gift of TASH.</span>
             </h2>
             <p className="font-sans text-anchor/80 text-sm md:text-lg mb-6 md:mb-10 max-w-md leading-relaxed">
               Digital gift cards for every service. Choose any value and send it instantly.
@@ -74,11 +74,9 @@ export function GiftCards() {
 
               {/* Wordmark */}
               <div className="relative font-serif text-white text-lg md:text-3xl tracking-[0.18em] uppercase leading-[1.05]">
-                The
+                TASH
                 <br />
-                Esthetic
-                <br />
-                Haus
+                Skin
               </div>
 
               {/* Card bottom */}
