@@ -236,7 +236,7 @@ function ContactForm() {
     <div className="relative w-full bg-white border border-anchor/20 p-5 lg:p-4 overflow-hidden">
       {/* Decorative monogram watermark */}
       <div className="absolute -bottom-8 -right-4 font-serif italic text-anchor/[0.04] text-[12rem] lg:text-[7rem] leading-none pointer-events-none select-none">
-        eh
+        ts
       </div>
 
       {/* Header */}
