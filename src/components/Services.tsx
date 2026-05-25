@@ -220,7 +220,7 @@ const services: Service[] = [
     category: 'Advanced',
   },
   {
-    title: 'TODO_CLIENT: LED Therapy',
+    title: "TASH's LED Red Light Facial",
     desc: 'A non-invasive skin treatment that uses different colors of light to help heal skin, reduce acne, calm inflammation, and boost collagen — safe, gentle, and painless. Available as an add-on or stand-alone service. As a stand-alone, it includes a double cleanse, skin analysis, toning, mask, and LED.',
     price: '$100',
     category: 'Advanced',

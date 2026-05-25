@@ -38,6 +38,7 @@ const SERVICE_ID_MAP: Record<string, string> = {
   'brow code hybrid brow stain': '7L6SE5WXXJCTKEF4ZUBK335S',
   'the tash microneedling treatment': 'SA2EAMUB4UAOBDVT2LQYVKIJ',
   'cosmedix molecular peels': 'WDWISQ6C7IRCMGNK7KVINUWU',
+  "tash's led red light facial": 'R2Q2VUB4GN5U77F22FQZLW74',
   'tash scalp treatment and massage': 'CSTCGZYSOR5ND5ICTT4T64JR',
   'the tash hydrated lip mask': 'NWYCOO7LPMJM2NLA62QI46HN',
   'the tash signature lip wax': 'VIL7CKVYIRTJG3EBEUVCES7Y',
